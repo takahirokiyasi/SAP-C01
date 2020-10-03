@@ -1,5 +1,5 @@
 # EC2
-## タイプ
+## インスタンスタイプ
 ### 汎用
 M4 M5
 ### メモリ最適化
@@ -14,3 +14,9 @@ D2 H1 I3
 
 # Elastic Beanstalk
 ## Elastic Beanstalk Tomcat Platform
+
+# Lambda
+## LambdaとX-Ray
+Lambdaの処理ステップのどこがボトルネックかを用意に判別できるようになる
+## VPC Lambda
+NATgatewayを使わないとインターネット接続できない。
