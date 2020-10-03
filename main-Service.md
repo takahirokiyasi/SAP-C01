@@ -20,3 +20,13 @@ D2 H1 I3
 Lambdaの処理ステップのどこがボトルネックかを用意に判別できるようになる
 ## VPC Lambda
 NATgatewayを使わないとインターネット接続できない。
+
+## Lambda@Edge
+※cloudfrontの機能
+Lambda@Edgeとは、AWS Lambda の拡張機能で、CloudFront が配信するコンテンツをカスタマイズする関数を実行できるコンピューティングサービスで世界中のビューワーの最寄りのAWSのロケーションで実行することができる。
+CloudFrontディストリビューションをLambda@Edge関数に関連付けると、CloudFront は、CloudFrontエッジロケーションでリクエストとレスポンスを傍受します。Lambda関数は、次のCloudFrontイベントの発生時に実行できる。
+
+ - CloudFront がビューワーからリクエストを受信したとき (ビューワーリクエスト)
+ - CloudFront がリクエストをオリジンに転送する前 (オリジンリクエスト)
+ - CloudFront がオリジンからレスポンスを受信したとき (オリジンレスポンス)
+ - CloudFront がビューワーにレスポンスを返す前 (ビューワーレスポンス)
