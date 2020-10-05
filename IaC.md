@@ -5,5 +5,9 @@ ChefやPuppetなどのサーバー設定ツールを元にした構成管理の�
 CloudformationでOpsWorksを構築することも可能
 
 
-## CloudFromation + Opsworks
+## CloudFormation + Opsworks
 CloudFormation内でOpsWorksコンポーネント（スタック・レイヤー・インスタンス・アプリケーション）をモデリングし、それらをCloudformation スタックとしてプロビジョニングすることができる
+
+# CloudFormation
+## DeletionPolicy
+スタックが削除されてもリソースを保持する設定。

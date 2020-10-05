@@ -24,6 +24,15 @@ VPCからオンプレミス環境へ疎通するためにはVPCのルートテ�
 仮装インターフェイスを稼働状態にするために、802.1 Q VLANに対してVLANトランキングの有効化が必要
 VPCのVGW(virtual private gateway)に対して、ルートプロパゲーションを有効化する。
 
+## Direct Connect Gateway
+仮想インターフェース(以下VIF)とVPCの仮想プライベートゲートウェイ(以下VGW)の間に追加する新たなコンポーネントで複数リージョンに対してDirect Connectできる
+- Direct Connect GatewayをいずれかのAWSリージョンに作成すると、AWSの全リージョン *1に複製され、相互接続できる
+- Direct Connect Gatewayには複数のVIFおよびVGWが接続できる
+※時間あたりの料金が必要なので料金が高い
+direct connectを一つのリージョンにしてリージョン間VPCピアリングした場合の方が通信量に対して料金がかかるだけなので安い。
+
+Direct Connect と VPNは同じVGWを使用することができる。
+
 # CGW（カスタマーゲートウェイ）
 VPCとオンプレミス環境間でVPN接続を確立する際に必要になる。
 Direct Connectの場合はいらない。
