@@ -52,3 +52,16 @@ CloudFrontディストリビューションをLambda@Edge関数に関連付け�
  - CloudFront がリクエストをオリジンに転送する前 (オリジンリクエスト)
  - CloudFront がオリジンからレスポンスを受信したとき (オリジンレスポンス)
  - CloudFront がビューワーにレスポンスを返す前 (ビューワーレスポンス)
+
+ # SWF(Amazon Simple Workflow Service)
+ Amazon SWF は、開発者が並行したステップまたは連続したステップがあるバックグラウンドジョブを構築、実行、スケールするのに役立つ。Amazon SWF は、クラウド内の完全マネージド型の状態トラッカー、およびタスクコーディネーターとみなすことができる。
+
+SWFでもSWFアクティビティの代わりにLambdaを実行することができる
+
+例）動画の処理
+
+# AWS Step Function
+個々のLambdaをつなげるためのサービス
+
+## SWF・Step Function使い分け
+AWS Step Functions では、より生産的かつ機敏なアプローチにより、視覚的ワークフローを使用してアプリケーションコンポーネントを調整できるため、新しいアプリケーションには AWS Step Functions を使用する。プロセスにおいて介入する外部信号が必要な場合、または結果を親に返す子プロセスを起動する場合は、Amazon Simple Workflow Service (Amazon SWF) を使用する。
