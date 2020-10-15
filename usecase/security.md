@@ -1,0 +1,2 @@
+# LDAP（Lightweight Directory Access Protocol）による認証
+カスタムIDブローカーによって、LDAPによるユーザー認証を実施することで、ユーザーはAWSリソースにアクセスすることができる。
