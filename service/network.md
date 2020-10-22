@@ -26,7 +26,7 @@ VPCのVGW(virtual private gateway)に対して、ルートプロパゲーショ�
 
 ## Direct Connect Gateway
 仮想インターフェース(以下VIF)とVPCの仮想プライベートゲートウェイ(以下VGW)の間に追加する新たなコンポーネントで複数リージョンに対してDirect Connectできる
-- Direct Connect GatewayをいずれかのAWSリージョンに作成すると、AWSの全リージョン *1に複製され、相互接続できる
+- Direct Connect GatewayをいずれかのAWSリージョンに作成すると、AWSの全リージョンに複製され、相互接続できる
 - Direct Connect Gatewayには複数のVIFおよびVGWが接続できる
 ※時間あたりの料金が必要なので料金が高い
 direct connectを一つのリージョンにしてリージョン間VPCピアリングした場合の方が通信量に対して料金がかかるだけなので安い。
@@ -38,6 +38,14 @@ VPCとオンプレミス環境間でVPN接続を確立する際に必要にな�
 Direct Connectの場合はいらない。
 
 # Transit Gateway
+AWS Transit Gateway を利用して、多数のVPCを管理することができます。AWS Transit Gateway を使用すれば、中央のゲートウェイからネットワーク上にある Amazon VPC、オンプレミスのデータセンター、リモートオフィスそれぞれに単一の接続を構築して管理するのみでよいのです。Transit Gateway がハブの役割を果たし、トラフィックがスポークのように接続されたネットワーク間をどのようにルーティングするか等をすべて制御します。
+
+AWS Transit Gateway では統計とログが提供されます。これらは、Amazon CloudWatch や Amazon VPC フローログなどのサービスで使用されます。Amazon CloudWatch を使用して、Amazon VPC と VPN 接続間の帯域幅の使用量、パケットフロー数、パケットドロップ数を取得できます。また、AWS Transit Gateway で Amazon VPC フローログを有効にできるため、AWS Transit Gateway を使用してルーティングされた IP トラフィックに関する情報を取得できます
+
+また、トランジットゲートウェイをファイアウォールまたは IPS（侵入防止システム）に接続したり、ネットワークのすべての入出力トラフィックを処理する単一の VPC を作成することもできます。
+
+## Transit Gateway network manager
+AWS Transit Gateway network manager は、ネットワークトポロジーの変更、ルーティングの更新、接続ステータスの更新に関する組み込みのイベント通知を提供します。
 
 # VPC
 ## IPアドレス枯渇
