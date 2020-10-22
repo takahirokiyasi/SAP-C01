@@ -69,3 +69,6 @@ SWFでもSWFアクティビティの代わりにLambdaを実行することが�
 ## SWF・Step Function使い分け
 AWS Step Functions では、AWS の複数のサービスをサーバーレスのワークフローに整理できるため、すばやくアプリケーションをビルドおよび更新できます。これを利用することでSWFよりも視覚的に容易にワークフローを作成できるため、通常のワークフロー作成ではAWS Step Functionsの利用が推奨されている。
 プロセスにおいて介入する外部信号が必要な場合、または結果を親に返す子プロセスを起動する場合は、AWS Step Functions では対応できないため、Amazon SWF使用することが求められている。
+
+# App Sync
+AppSyncはAWSの管理系GraphQLサービスにて、ApolloやPrismaと比べてAWSからインフラやサーバーまで提供してくれるサービス
