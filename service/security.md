@@ -23,6 +23,8 @@ IAMグループとIAMポリシーを使って
 ロールによってアクセス許可が付与される場合は元から与えられていたアクセス許可を放棄しないといけないが（元のアクセス許可とは？？）
 リソースベースのポリシーで許可した場合は元のアクセス許可は保持されるというメリットがある
 
+# AWS Resource Access Manager(AWS RAM)
+所有する特定のAWSリソースを他のAWSアカウントと共有できます。 AWS OrganizationsでTrusted Accessを有効にするにはAWS RAM CLIから、enable-sharing-with-aws-organizationsコマンドを使用します。
 
 # ACM
 リージョン単位で証明書を発行する
