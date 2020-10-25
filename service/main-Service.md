@@ -29,6 +29,12 @@ C5nなどインスタンス世代の番号の後にオプション表記があ�
 ## プレイスメントグループ
 プレイスメントグループの設定は先にプレイスメントグループを構成した上で、その中でインスタンスタイプとインスタンス数を決定することが必要
 
+# ECS
+## EC2を使用する場合のAuto Scaling 
+ECS Cluster Auto Scalingを有効にするには、Capacity Providerと呼ばれる新たな項目を設定する必要があります。
+1つのCapacity Providerは1つのEC2 Auto Scalingグループに関連付けられます。
+あるAuto ScalingグループにECS Capacity Providerを関連付けてから、ECSクラスターにCapacity Providerを追加すると、クラスターを自動スケールできるようになります。
+
 # ELB
 ## スティッキーセッション
 同じ利用者からのリクエストを同じEC2インスタンスで処理するようにルーティングする（ステートフルなサービスで使う）
