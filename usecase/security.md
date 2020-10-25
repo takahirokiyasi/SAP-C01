@@ -26,3 +26,13 @@ CHAP（Challenge Handshake Authentication Protocol）とは、PPPなどで使用
 ## Route53での対策
 Amazon Route 53 のシャッフルシャーディングとanycastルーティングにより、DDoS 攻撃を受けていても連携してエンドユーザーがアプリケーションにアクセスできるような機能を提供している。
 
+# 認証
+## 社内アカウントを使用して既にサインインしているオンプレミスユーザーが、個別のIAMユーザーを作成せずにAWSリソースを管理する場合
+SAML 2.0 IDプロバイダーを使用してユーザーに対して、AWSリソースへのフェデレーションアクセスを提供し、オンプレミスのシングルサインオン（SSO）エンドポイントを使用してユーザーを認証し、フェデレーションアクセスを提供する前にアクセストークンを付与することでシングルサインオンを実現することができます
+
+## ソーシャルログイン
+AssumeRoleWithWebIdentityはWeb Identity Federation（Facebook、Google、およびその他のソーシャルログイン）専用の認証方式
+
+## 複数アカウントがある場合のリソース共有
+AWS Resource Access Manager(RAM)を使用することで、所有する特定のAWSリソースを他のAWSアカウントと共有できる。 AWS OrganizationsでTrusted Accessを有効にするにはAWS RAM CLIから、enable-sharing-with-aws-organizationsコマンドを使用する。
+
