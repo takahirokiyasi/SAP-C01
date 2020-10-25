@@ -67,7 +67,20 @@ AD Connectorを経由することで既存のディレクトリサービスを�
 
 ## AWS Directory Service for Microsoft Active Directory(AWS Managed Microsoft AD)
 オンプレミスのADと信頼関係を構築できる。
+既存のADインフラストラクチャを使用してAD対応ワークロードをAWSクラウドに移行する場合は、AWS Managed Microsoft AD が適当。
+AD 対応アプリケーションと AWS アプリケーションにユーザーはオンプレミス AD 認証情報でアクセスでき、そのためのユーザー、グループ、またはパスワードの同期が不要。
+たとえば、ユーザーは既存の AD ユーザー名とパスワードを使用して、AWS マネジメントコンソールとAmazon WorkSpaces にサインインできます。また、SharePoint などの AD 対応アプリケーションに認証情報の再入力なしでアクセスできるようになる。
 [AWS Managed Microsoft ADのユースケース](https://docs.aws.amazon.com/ja_jp/directoryservice/latest/admin-guide/ms_ad_use_cases.html)
 
+# 認証・認可の基本知識
+SSO（シングルサインオン）は1度のログインにより複数のサービスはアクセスするための仕組み
+
+OAuth・OpenID Connect・SAMLはSSOを実現するためのプロトコル
+
+OAuthは認可（権限を与える）のプロトコル
+OpenID ConnectやSAMLは認証（身元を明らかにする）のプロトコル
+
+OpenID ConnectはOAuthの拡張規格のためSNSのOAuth認証と同時に利用され
+SAMLはActive Directory Federation Services (ADFS) などに利用されている。
 
 
