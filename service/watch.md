@@ -22,3 +22,14 @@ AWS Configのマルチアカウント、マルチリージョンのデータ集�
 # System Manager
 AWS Systems Managerは、AWSでインフラストラクチャを表示および制御するために使用できるAWSのサービスです。
 Systems Managerコンソールを使用すると、複数のAWSのサービスのオペレーションデータを表示して、AWSリソース間でオペレーションタスクを自動化することができます。
+
+# CloudWatch
+## CloudWatch Logs
+### CloudWatch Logs Insights
+クラウドスケールで動作するよう設計され、セットアップやメンテナンスが不要なフルマネージドのサービス。
+大量のログを数秒で走査し、インタラクティブなクエリの実行と可視化を提供する
+
+# Cloud Watch エージェント
+EC2のメトリクスとログを収集できる。
+オンプレミスサーバーからもメトリクスを収集できる。（Linux Widows）
+CloudWatch エージェントによって収集されたログは、以前の CloudWatch Logs エージェントによって収集されたログと同様に、処理されて Amazon CloudWatch Logs に格納される
