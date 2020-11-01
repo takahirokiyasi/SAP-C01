@@ -86,6 +86,7 @@ AWS Step Functions では、AWS の複数のサービスをサーバーレスの
 
 # App Sync
 AppSyncはAWSの管理系GraphQLサービスにて、ApolloやPrismaと比べてAWSからインフラやサーバーまで提供してくれるサービス
+デバイス間でアプリケーションデータを同期するためのサービス
 
 # その他の知識
 ## RTO（目標復旧時間）
