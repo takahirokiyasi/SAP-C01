@@ -56,6 +56,10 @@ AWS Transit Gateway network manager は、ネットワークトポロジーの�
 ## IPアドレス枯渇
 最大4つのセカンダリーCIDRブロックを関連付けてVPCに追加することにより、ネットワークをさらに拡張することができる。
 
+## DHCP オプション
+一度DHCPオプションのセットを作成すると、それらを変更できないため、 DHCPオプションの新しいセットを作成し、VPCに関連付ける必要がある。
+新しいDHCPオプションを作成して、 domain-name-servers=AmazonProvidedDNS を指定してVPCに関連付けを実施することで、エラーを回避することができる。
+
 
 # Egress Only インターネットゲートウェイ
 送信専用のインターネットゲートウェイ
