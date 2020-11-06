@@ -16,3 +16,12 @@ Amazon EMR の中心的なコンポーネントはクラスターです。クラ
 ## Kinesis Data Streams
 レコードの順序付け、および複数のAmazon Kinesisアプリケーションに対して同じ順序でレコードを読み取ったり再生したりする機能を提供
 SQSとAmazon Kinesis Data Streamsを一緒に利用する必要はない
+
+## Amazon Kinesis Video Streams
+動画はこちらを使う
+
+## Kinesis エージェント
+スタンドアロンの Java ソフトウェアアプリケーションで、データを収集して Kinesis Data Streams に送信する簡単な方法を提供する。
+
+## Kinesis Client Library(KCL)
+Amazon Kinesis Client Library（KCL）を使用することでAmazon EC2インスタンスで実行するデータ分析アプリケーションを作成することができ
