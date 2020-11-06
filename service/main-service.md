@@ -73,6 +73,9 @@ Route53のALBに対しての正常性のチェック
 # Elastic Beanstalk
 ## Elastic Beanstalk Tomcat Platform
 
+## RDSはElastic Beanstalk環境に組み込まず、個別で立てた方が良い
+RDSインスタンスはElastic Beanstalk環境の一部となると、パフォーマンスに最適ではないため、RDSを個別に作成して利用することが好ましい。データベースインスタンスのライフサイクルをアプリケーション環境のライフサイクルに結び付けるため、実稼働環境に理想的なものではない。
+
 # Lambda
 ## LambdaとX-Ray
 Lambdaの処理ステップのどこがボトルネックかを用意に判別できるようになる

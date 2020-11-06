@@ -36,3 +36,12 @@ AssumeRoleWithWebIdentityはWeb Identity Federation（Facebook、Google、およ
 ## 複数アカウントがある場合のリソース共有
 AWS Resource Access Manager(RAM)を使用することで、所有する特定のAWSリソースを他のAWSアカウントと共有できる。 AWS OrganizationsでTrusted Accessを有効にするにはAWS RAM CLIから、enable-sharing-with-aws-organizationsコマンドを使用する。
 
+# 地域制限
+地域制限 (地理的ブロッキング) を使用すると、CloudFront ウェブディストリビューションを通じて配信しているコンテンツについて、特定地域のユーザーによるアクセスを回避できます。地域制限を使用するには、次の 2 つの方法があります。
+
+・CloudFront の地理制限機能の使用
+エッジロケーションによる地理的制限を有効化することで、ディストリビューションに関連するすべてのファイルへのアクセスを制限し、国レベルでアクセスを制限する場合は、この方法を使用します。 
+
+・サードパーティの位置情報サービスの使用
+ディストリビューションに関連するファイルのサブセットへのアクセスを制限する場合や、国レベルより詳細なレベルでアクセスを制限する場合は、この方法を使用します。
+
