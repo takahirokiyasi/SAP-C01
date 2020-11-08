@@ -41,15 +41,23 @@ IAMグループとIAMポリシーを使って
 ロールによってアクセス許可が付与される場合は元から与えられていたアクセス許可を放棄しないといけないが（元のアクセス許可とは？？）
 リソースベースのポリシーで許可した場合は元のアクセス許可は保持されるというメリットがある
 
+## IAMロールによるクロスアカウントアクセス
+あるアカウントのユーザーを別のアカウントのIAMロールに紐づける機能。
+例えば開発アカウントを使って、本番環境のS3データを更新するようなケースで利用
+AssumeRoleを使う。
+
+## Switch Role
+IAMユーザーからクロスアカウントアクセス用IAMロールに切替ができる
+Switch Roleを活用することにより各アカウントのIAMユーザーとしてログインしなおすことなしにセキュアに管理コンソールを切り替え可能
+
 # STS(Security Token Service)
 IAMの一機能  
 一時的セキュリティ認証情報を持つ、信頼されたユーザーを作成および提供することができる。
 ユーザーにはロールが紐づいている
 ## ID フェデレーションでのSTSの使用
 ### ウェブIDフェデレーション
-基本的にはCognitoを使うことで実現できるが、直接AssumeRoleWithWebIdentity APIを呼び出しても実現できる（Cognitoを使う時もAssumeRoleWithWebIdentity APIを叩いている Cognito推奨）
+基本的にはAWS Cognitoを使うことで実現できるが、直接AssumeRoleWithWebIdentity APIを呼び出しても実現できる（Cognitoを使う時もAssumeRoleWithWebIdentity APIを叩いている Cognito推奨）
 Google・Amazon・Facebook認証とかで使用する。
-
 
 ### エンタープライズIDフェデレーション
 組織のネットワークのユーザーを認証し、ユーザーが AWS にアクセス可能にすることができる。
@@ -77,19 +85,6 @@ AssumeRoleWithSAML
 
 コンソール・CLI・APIで作成可能
 
-# AWS SSO
-STSを使ってSSOを実現するのではなくより簡単にSSOを実現する。導入に必要なタスクがより少なくなった
-
-AWS SSO内にADをデフォルトで作れる（外部のADにも接続できる）
-
-
-- AWS Organizations マスターアカウントから、ユーザー毎のアクセス権限を⼀元管理
-
-
-### ウェブIDフェデレーション
-プロバイダーの認証情報を AWS アカウントのリソースを使用するための一時的なアクセス許可に変換することができる。
-Facebook、Google、および任意の OpenID Connect (OIDC) 互換の ID プロバイダーがサポートされている。
-
 # AWS Resource Access Manager(AWS RAM)
 所有する特定のAWSリソースを他のAWSアカウントと共有できます。AWS OrganizationsでTrusted Accessを有効にするにはAWS RAM CLIから、enable-sharing-with-aws-organizationsコマンドを使用します。
 
@@ -109,6 +104,15 @@ AWS上に利用者専用のハードウェアがプロビジョニングされ�
 Amazon CloudWatch でのほぼリアルタイムの通知と、AWS WAFとAWS Shieldマネジメントコンソールあるいは API での詳細な診断によって、DDoS 攻撃に対する完全な可視性を与えてくれる。
 AWS WAF and AWS Shieldマネジメントコンソールから以前の攻撃の要約を表示することもできる。
 
+## AWS WAF
+## Web ACL
+Webアクセス制御リスト(Web ACL)は、保護されたリソースが応答するWebリクエストに対してきめ細かい制御を提供します。保護できる Amazon CloudFront, Amazon API Gateway, Application Load Balancer, and AWS AppSync リソース。
+- リクエストの IP アドレスの送信元
+- リクエストの送信元の国
+- リクエストの一部に含まれる文字列一致または正規表現（regex）一致
+- リクエストの特定の部分のサイズ
+- 悪意のある SQL コードまたはスクリプトの検出
+
 # CloudHSM
 クラウドベースのハードウェアセキュリティモジュール (HSM) 
 クラウドで暗号化キーを簡単に生成して使用できるようになります。
@@ -117,8 +121,14 @@ CloudHSM で、FIPS 140-2のレベル3認証済みのHSMを使用して、暗号
 AWS CloudHSMを使用して、WebサーバーのSSL / TLS処理をオフロードできます。この処理にCloudHSMを使用すると、Webサーバーの負担が軽減され、Webサーバーの秘密キーをCloudHSMに保存することでセキュリティが強化されます。 SSLおよびTLSは、WebサーバーのIDを確認し、インターネット上で安全なHTTPS接続を確立するために使用される。
 
 # AWS Organizations
+## 新規AWSアカウントの作成
+マスターアカウントからのみ組織のメンバーアカウントを作成できる。
+メンバーアカウントに与えるIAMロール・メールアドレス・アカウント名・billingに対するアクセス権を設定する。
+
 ## SCP
 制御できるのは各リソースに対しての権限の最大範囲（S3に対する読み取り・書き込み・管理全て）だけで、別にIAMグループ＋IAMロールとかでS3読み取りのみの制限を加える必要がある。
+
+AWS OrganizationsのSCPは`サービスにリンクされたIAMロール`には影響しないようになっている。 そのため、サービスにリンクされたロールにより、他のAWSサービスの利用を継続することが可能。したがって、SCPを適用した後も、IAMロールによって新アカウントは実行が制限されているはずのECSの実行アクションを操作できる状態が継続することができる
 
 ## 統合請求
 AWS Organizationsを利用して一括請求を設定すると、ボリュームディスカウントやリザーブドインスタンスの割引適用を登録されたメンバーアカウント全体で共有することができる
@@ -144,6 +154,16 @@ Amazon Cognito のユーザディレクトリ
 ## Cognito Sync
 IDプールで管理されるユーザー単位に、デバイス間でアプリケーションデータを同期する機能
 新規で開発する場合、AWS AppSyncというがあるので現在非推奨
+
+# AWS SSO
+STSを使ってSSOを実現するのではなくより簡単にSSOを実現する。導入に必要なタスクがより少なくなった
+
+AWS SSO内にADをデフォルトで作れる（外部のADにも接続できる）
+
+- AWS Organizations マスターアカウントから、ユーザー毎のアクセス権限を⼀元管理
+既存の社内認証情報
+
+
 
 # Directory Service
 ## Simple AD
