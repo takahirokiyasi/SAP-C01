@@ -60,6 +60,12 @@ AWS Transit Gateway network manager は、ネットワークトポロジーの�
 一度DHCPオプションのセットを作成すると、それらを変更できないため、 DHCPオプションの新しいセットを作成し、VPCに関連付ける必要がある。
 新しいDHCPオプションを作成して、 domain-name-servers=AmazonProvidedDNS を指定してVPCに関連付けを実施することで、エラーを回避することができる。
 
+# VPC ピアリング
+異なるVPC同士で利用しているCIDRレンジが重複すると接続を確立できない。両方とも10.0.0.0/16の時など
+
+## 推移的なピアリング接続をサポートしない
+AとB間・BとC間がピアリングされている場合、AからBを経由してCにアクセスする通信はVPCピアリングではできない
+A・C間でVPCピアリング（フルメッシュ設定）するかTransit VPCかTransit gatewayを使う（Transit　gatewayの方が管理が楽で、多機能）
 
 # Egress Only インターネットゲートウェイ
 送信専用のインターネットゲートウェイ
