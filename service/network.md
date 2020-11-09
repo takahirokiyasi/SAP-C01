@@ -108,6 +108,10 @@ Classic Load Balancer の各ロードバランサーノードは、有効なす�
 
 クライアントが DNS ルックアップをキャッシュする環境では、着信リクエストがいずれかのアベイラビリティーゾーンを優先する場合がある。そのためクロスゾーン負荷分散を有効にする必要がある。
 
+### TCP　UDPのプロトコル
+TCPはCLBとNLBがサポートしている
+ALBはHTTPとHTTPSのみ
+
 # Route 53
 ## ホストゾーン
 ホストゾーンはレコードのコンテナであり、レコードには example.com やそのサブドメイン (acme.example.com や zenith.example.com) の特定のドメインのトラフィックをどのようにルーティングするかに関する情報を保持
@@ -120,4 +124,25 @@ Classic Load Balancer の各ロードバランサーノードは、有効なす�
 プライベートホストゾーンを使用するには、次の Amazon VPC 設定を true に設定する必要があります。
 enableDnsHostnames
 enableDnsSupport
+
+# CloudFront
+全てのTTLを0に設定することで、コンテンツは変更されるとすぐにオリジンから配信することができる。
+
+## 署名つきURL・Cookie
+URLとCookieではほとんど同じ機能を提供している。
+
+## 地域制限 (地理的ブロッキング) 
+地域制限 (地理的ブロッキング) を使用すると、CloudFront ウェブディストリビューションを通じて配信しているコンテンツについて、特定地域のユーザーによるアクセスを回避できる。
+
+## Origin Protocol Policy
+カスタムオリジンと通信するプロトコルを決めるオプション
+- Http Only
+- Https Only
+- Mathc
+
+## Viewer Protocol Policy
+ビューワーと通信するプロトコルを決めるオプション
+- http redirect https
+- http and https
+- https only
 
