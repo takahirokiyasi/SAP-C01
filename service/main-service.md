@@ -101,6 +101,14 @@ CloudFrontディストリビューションをLambda@Edge関数に関連付け�
  - CloudFront がオリジンからレスポンスを受信したとき (オリジンレスポンス)
  - CloudFront がビューワーにレスポンスを返す前 (ビューワーレスポンス)
 
+# API gateway
+## Lambdaオーソライザー
+Lambda 関数を使用して API へのアクセスを制御する API Gateway の機能です。
+
+Lambda オーソライザーは、OAuth や SAML などのベアラートークン認可戦略を使用する、または発信者 ID を判断するためにリクエストパラメータを使用するカスタム認証スキームを実装する場合に便利
+
+https://docs.aws.amazon.com/ja_jp/apigateway/latest/developerguide/apigateway-use-lambda-authorizer.html#api-gateway-lambda-authorizer-flow
+
 # SWF(Amazon Simple Workflow Service)
 Amazon SWF は、開発者が並行したステップまたは連続したステップがあるバックグラウンドジョブを構築、実行、スケールするのに役立つ。Amazon SWF は、クラウド内の完全マネージド型の状態トラッカー、およびタスクコーディネーターとみなすことができる。
 
