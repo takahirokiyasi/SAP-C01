@@ -1,4 +1,8 @@
 # Rekognition
+画像からテキストデータの取り込みもできる
+
+AWS CLI または Rekognition APIを使用
+
 ## Rekognition DetectFaces
 検出された各顔を含むJSON応答を返すことができる。  
 Amazon Rekognitionは画像検品ソリューションに特化したサービスではない（代わりにG2インスタンスに
