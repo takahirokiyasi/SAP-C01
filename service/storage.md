@@ -12,6 +12,9 @@
  - 最小保存期間は180日で、最低180日よりも前にオブジェクトを削除した場合、180日分課金される
  - 復元オプションの標準取り出しで12時間以内、一括取得で48時間以内待つ必要がある
 
+### 低冗長化ストレージ（RRS）
+それほど重要でないデータを保存
+
 ## クロスアカウントアクセス
 別のAWSアカウントにS3バケットに保存されているオブジェクトをのアクセスを許可することができる
 ※データ転送料はバケット所有者が負担する
@@ -34,7 +37,19 @@ S3バケットポリシーを使用してS3バケットにアクセスできるV
 Amazon S3 はオブジェクトをディスクに保存する前に暗号化し、オブジェクトをダウンロードするときに復号する
 
 #### SSE-S3
-Advanced Encryption Standard (AES-256)で暗号化するやつ
+AmazonS3がデータ暗号化キーとマスター暗号化キーを管理
+Advanced Encryption Standard (AES-256)で暗号化します。
+
+#### SSE-KMS
+AWSマネージド型キーまたは、カスタマー管理型のキーがありKMSでキーを管理
+
+### SSE-C
+ユーザーが暗号化キーを管理
+Amazon S3はSSE-Cの使用時にHTTP経由で行われたリクエストを拒否します。Amazon S3 REST API呼び出しの場合、次の3つのHTTPリクエストヘッダーを全て含める必要があります。
+
+x-amz-server-side-encryption-customer-algorithm
+x-amz-server-side-encryption-customer-key
+x-amz-server-side-encryption-customer-key-MD5 
 
 ## バージョン管理
 S3バージョン管理を有効にすると、既存のファイルはすべて、バージョンIDがNULLになる。

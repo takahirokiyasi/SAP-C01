@@ -1,5 +1,5 @@
 # Opsworks
-ChefやPuppetなどのサーバー設定ツールを元にした構成管理のサービス  
+ChefやPuppetなどのサーバー設定ツールを元にしたサーバー管理のサービス  
 アプリケーションのデプロイ・スケーリング・保守の自動化が可能  
 主にEC2上のミドルウェアやアプリケーションの設定管理を担い、デプロイ、モニタリング、スケーリングを行う。
 CloudformationでOpsWorksを構築することも可能
@@ -17,8 +17,17 @@ Resource Tags プロパティを使用してリソースにタグを適用し、
 
 ## CreationPolicy 属性
 CreationPolicy 属性をリソースに関連付けて、AWS CloudFormation が指定数の成功シグナルを受信するかまたはタイムアウト期間が超過するまでは、ステータスが作成完了にならないようにします。リソースにシグナルを送信するには、cfn-signal ヘルパースクリプトまたは SignalResource API を使用できる。
+
 ### ResourceSignalパラメーター
 timeoutを指定することでタイムアウト時間を設定することができる。
+
+### cfn-signal
+cfn-signalヘルパースクリプトはAWS CloudFormationに信号を送り、Amazon EC2インスタンスが正常に作成または更新されたかどうかを示します。インスタンスにソフトウェアアプリケーションをインストールして設定する場合、それらのソフトウェアアプリケーションの準備ができたらAWS CloudFormationにシグナルを送ることができます。
+
+### transform
+CloudFormationのオプションの Transform セクションでは、CloudFormation テンプレートを処理するために使用するマクロを 1 つ以上指定します。Transform セクションではテンプレート内で 1 つ以上のマクロを宣言できます。マクロは、AWS CloudFormation によって、指定された順序で実行されます。変更セットを作成すると、AWS CloudFormation は処理されたテンプレートコンテンツを含む変更セットを生成します。その後、変更内容を確認して変更セットを実行できます。
+
+AWS::Serverless Transformの設定において、使用する AWS SAM バージョンを指定することが必要
 
 # デプロイ戦略
 ## ローリングアップグレード
