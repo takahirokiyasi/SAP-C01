@@ -1,6 +1,7 @@
 # EC2
 ## インスタンスタイプ
 ネットワーク帯域はインスタンスタイプによって決まる
+インスタンスタイプがIPv6に対応していない場合がある（M3など）
 
 ### 汎用
 M4 M5
@@ -127,6 +128,17 @@ Lambda オーソライザーは、OAuth や SAML などのベアラートーク�
 
 https://docs.aws.amazon.com/ja_jp/apigateway/latest/developerguide/apigateway-use-lambda-authorizer.html#api-gateway-lambda-authorizer-flow
 
+## エラー
+### INTEGRATION_FAILURE
+Lambda関数とAPI Gatewayとの統合失敗を示す
+### INTEGRATION_TIMEOUT
+Lambdaファンクションが実行しない場合
+
+## ステージ変数
+API Gateway のデプロイステージでは、アルファ、ベータ、プロダクションなど、各 API 用の複数のリリースステージを管理できます。
+ステージ変数を使用することで、異なるバックエンドのエンドポイントとやり取りするよう API デプロイステージを設定できます。
+それによって、test.pintor.comエンドポイントとmain.pintor.testエンドポイントを介したテスト版リリースを使用して、本番リリースに接続するといった設定が可能
+
 # SWF(Amazon Simple Workflow Service)
 Amazon SWF は、開発者が並行したステップまたは連続したステップがあるバックグラウンドジョブを構築、実行、スケールするのに役立つ。Amazon SWF は、クラウド内の完全マネージド型の状態トラッカー、およびタスクコーディネーターとみなすことができる。
 
@@ -136,6 +148,10 @@ SWFでもSWFアクティビティの代わりにLambdaを実行することが�
 
 # AWS Step Function
 個々のLambdaをつなげるためのサービス
+
+## モニタリング
+人の作業によるアクティブティはCloudTrailで監視する。
+システム状況のモニタリングはCloudWatchを使用する。
 
 ## SWF・Step Function使い分け
 AWS Step Functions では、AWS の複数のサービスをサーバーレスのワークフローに整理できるため、すばやくアプリケーションをビルドおよび更新できます。これを利用することでSWFよりも視覚的に容易にワークフローを作成できるため、通常のワークフロー作成ではAWS Step Functionsの利用が推奨されている。
