@@ -66,6 +66,9 @@ Amazon EBS 暗号化 は、EBS リソースのために、独自のキー管理�
 
 デフォルトで暗号化する場合はリージョンごとの設定でデフォルト化可能（個々のEBSの単位で無効にするとかは無理）
 
+## Amazon Data Lifecycle Manager(DLM)
+Amazon EBS ボリュームをバックアップするスナップショットの作成、保持、削除を自動化できます。
+
 # ECS
 ## EC2を使用する場合のAuto Scaling 
 ECS Cluster Auto Scalingを有効にするには、Capacity Providerと呼ばれる新たな項目を設定する必要があります。
@@ -133,6 +136,15 @@ https://docs.aws.amazon.com/ja_jp/apigateway/latest/developerguide/apigateway-us
 Lambda関数とAPI Gatewayとの統合失敗を示す
 ### INTEGRATION_TIMEOUT
 Lambdaファンクションが実行しない場合
+
+## メトリクス
+- 4XXError：指定された期間に取得されたクライアント側エラーの数。
+- 5XXError：指定された期間に取得されたサーバー側エラーの数。
+- CacheHitCount：指定された期間内に API キャッシュから配信されたリクエストの数。
+- CacheMissCoun：API キャッシュが有効になっている特定の期間における、バックエンドから提供されたリクエストの数。
+- Count：指定された期間内の API リクエストの合計数。
+- IntegrationLatency：API Gateway がバックエンドにリクエストを中継してから、バックエンドからレスポンスを受け取るまでの時間。
+- Latency：API Gateway がクライアントからリクエストを受け取ってから、クライアントにレスポンスを返すまでの時間。
 
 ## ステージ変数
 API Gateway のデプロイステージでは、アルファ、ベータ、プロダクションなど、各 API 用の複数のリリースステージを管理できます。
