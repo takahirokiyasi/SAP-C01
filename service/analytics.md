@@ -18,6 +18,15 @@ EMRでSQLクエリを使用した分析は実施できない
 ## Kinesis Data Streams
 レコードの順序付け、および複数のAmazon Kinesisアプリケーションに対して同じ順序でレコードを読み取ったり再生したりする機能を提供
 SQSとAmazon Kinesis Data Streamsを一緒に利用する必要はない
+データの種類や用途に応じてストリームを作成する。ストリームは１つ以上のシャードによって構成される。
+データは「データレコード」と呼ばれる
+データレコードにはシーケンス番号がふられ、順番が保証される
+
+### Kinesis エージェント
+スタンドアロンの Java ソフトウェアアプリケーションで、データを収集して Kinesis Data Streams に送信する簡単な方法を提供する。
+
+### Kinesis Producer Library(KPL)
+Kinesis Data Streamsにデータを送信するOSSのライブラリ
 
 ### KCL Worker
 KCL WorkerはStreamと対応してログを受け取るプログラムのこと
@@ -33,8 +42,7 @@ Kinesisストリーム内のインスタンスのサイズとシャードの数�
 ## Amazon Kinesis Video Streams
 動画はこちらを使う
 
-## Kinesis エージェント
-スタンドアロンの Java ソフトウェアアプリケーションで、データを収集して Kinesis Data Streams に送信する簡単な方法を提供する。
+
 
 ## Kinesis Client Library(KCL)
 Kinesisアプリケーションを構築し、ストリーミングデータを使用してリアルタイムダッシュボードの強化、アラートの生成、動的な価格設定と広告の実装などを行うことができます。 Kinesis Data StreamsからAmazon Simple Storage Service（Amazon S3）、Amazon Redshift、Amazon EMR、AWS Lambdaなどの他のAWSサービスにデータを送信することが可能です。今回は目的であれば、大量のストリームデータをS3に蓄積して、 Redshiftによる解析を実施することができます。
@@ -46,3 +54,6 @@ Kinesisアプリケーションを構築し、ストリーミングデータを�
 ## Amazon Kinesis S3コネクター
 Amazon Kinesis から Amazon S3 にデータをアーカイブすることができます。Amazon Kinesis コネクタライブラリを使用すると Amazon Kinesis を他の AWS サービスやサードパーティー製ツールと簡単に統合できるようになります。
 Amazon Kinesis コネクタライブラリを使用するには、Amazon Kinesis クライアントライブラリ (KCL) が必要です。このライブラリの現在のバージョンでは、Amazon DynamoDB、Amazon Redshift、Amazon S3、Amazon Elasticsearch Service に対するコネクタが提供されています。
+
+## Kinesis Analytics
+ストリームデータを標準的なSQLクエリでリアルタイムに分析
