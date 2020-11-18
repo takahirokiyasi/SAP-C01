@@ -10,6 +10,22 @@ CloudFormation内でOpsWorksコンポーネント（スタック・レイヤー�
 ## 自動ヒーリング
 インスタンスが Amazon EC2 ヘルスチェックに合格した場合でも、スタック内にある異常なインスタンスまたは失敗したインスタンスを再起動します。スタックのレイヤー設定では、自動ヒーリングがデフォルトで有効化されています。自動ヒーリングが有効になっている場合、ポータルのダウンタイムを回避するために、失敗したEC2インスタンスは自動的に置き換えられます。
 
+## Opsworksエージェント
+発行された一連のコマンドを取得
+レシピを実行する
+
+## Opsworksスタックのライフサイクルイベント
+- Setup
+Appサーバーの起動
+- Configure
+- Deploy
+- Undeploy
+- shutdown
+
+## AWS Opsworks for Chef Automate
+完全マネージド型のChefサーバを数クリックで作成し、ワークフローの自動化を設定することができます。
+また、インスタンス設定ではサブネットやセキュリティグループ、バックアップの時間などを指定することができるようになっているほか、Chefコミュニティで配布されているCookbookなどと互換性があるため、サンプルコードとして利用することができます。
+Chef Automateと言うサービスがAWS上で使用できるので今までChef Automate使ってる場合は便利
 
 # CloudFormation
 ## DeletionPolicy
@@ -31,6 +47,10 @@ cfn-signalヘルパースクリプトはAWS CloudFormationに信号を送り、A
 CloudFormationのオプションの Transform セクションでは、CloudFormation テンプレートを処理するために使用するマクロを 1 つ以上指定します。Transform セクションではテンプレート内で 1 つ以上のマクロを宣言できます。マクロは、AWS CloudFormation によって、指定された順序で実行されます。変更セットを作成すると、AWS CloudFormation は処理されたテンプレートコンテンツを含む変更セットを生成します。その後、変更内容を確認して変更セットを実行できます。
 
 AWS::Serverless Transformの設定において、使用する AWS SAM バージョンを指定することが必要
+
+### Lambdaのコード
+AWS::Lambda::Functionを利用して、Lambda 関数のデプロイパッケージをCloudFormationで参照します。すべてのランタイムに対して、Amazon S3 内のオブジェクトの場所を指定できます。
+Node.js および Python 関数の場合で依存関係がない限りテンプレートにインラインで関数コードを指定できます。
 
 # デプロイ戦略
 ## ローリングアップグレード
