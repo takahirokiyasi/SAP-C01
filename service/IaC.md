@@ -16,7 +16,7 @@ CloudFormation内でOpsWorksコンポーネント（スタック・レイヤー�
 
 ## Opsworksスタックのライフサイクルイベント
 - Setup
-Appサーバーの起動
+Appサーバーの起動の終了後に発火
 - Configure
 - Deploy
 - Undeploy
