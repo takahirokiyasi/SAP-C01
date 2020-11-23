@@ -35,8 +35,8 @@ SSL-VPNなら外部からのリモートアクセス、IPSec VPNなら組織間�
 IPsec VPNをサポート
 
 ### AWS CloudHub
-複数のAWS Site-to-Site VPN接続がある場合にvpcとリモートネットワーク間の通信だけでなくリモート間の通信を可能にする
-
+複数のAWS Site-to-Site VPN接続がある場合にvpcとリモートネットワーク間（オンプレ）の通信だけでなくリモート間の通信を可能にする
+がTransit Gatewayで複数のVPN接続を管理可能なのでTransit Gateway推奨
 
 # Direct Connect
 オンプレミスから AWS への専用ネットワーク接続の構築するもの。
@@ -52,6 +52,7 @@ VPCのVGW(virtual private gateway)に対して、ルートプロパゲーショ�
 単一のプライベート仮想インターフェイスを用いたプライベート接続で中国を除く全リージョンのVPCと閉域で接続することができる。
 ※同一VPCアカウントのVPCのみに接続可能
 VPCからVPC・オンプレミスからオンプレミスへの折り返し接続は不可
+Transit Gatewayにつなぐことも可能
 
 Direct Connect Gatewayで複数のDirect Connect LocationからVGWの間に噛ませてVPCへ接続することができるので可用性が上がる。
 
@@ -65,10 +66,6 @@ direct connectを一つのリージョンにしてリージョン間VPCピアリ
 Direct Connect と VPNは同じVGWを使用することができる。
 
 https://dev.classmethod.jp/articles/direct-connect-gateway/
-
-## VGW(仮想プライベートゲートウェイ)
-プライベート仮想インターフェイスを介して、AWS Direct Connect 接続を、同じリージョンまたは異なるリージョンに配置されたアカウントの1つ以上のVPCに接続できる。
-Virtual Interface のVPC側の終端
 
 ## VIF（仮想インターフェイス）
 AWS Direct Connect 接続の使用を開始するには、次のいずれかの仮想インターフェイスを作成する必要があります。
@@ -97,12 +94,28 @@ Connectionを所有しているAWSアカウントから他のAWSアカウント�
 ## LAG (Link Aggregation Group)
 専用線を論理的に集約して１０GBしか無理なところを4本束ねて４０GB可能にしたりする
 
+# VGW(仮想プライベートゲートウェイ)
+プライベート仮想インターフェイスを介して、AWS Direct Connect 接続を、同じリージョンまたは異なるリージョンに配置されたアカウントの1つ以上のVPCに接続できる。
+Virtual Interface のVPC側の終端
+VPNの時にも必要
+１０VPNまで（上限緩和可能）
+トランジットゲートウェイがあるときはいらない
+
 # CGW（カスタマーゲートウェイ）
 VPCとオンプレミス環境間でVPN接続を確立する際に必要になる。
 
 オンプレ側のルーターのパブリックIPが設定値として必要（VPNにおいてのオンプレ側の終点の設定）
 
 # Transit Gateway
+VPC間をつなぐサービス、VPNコネクションとつなげることでオンプレともつなげるし、DirectConnectともつなぐことができる。
+※Direct　Connectとつなぐ場合の仮想インターフェイスはパブリックとかプライベート仮想インターフェイスではなくてTransit仮想インターフェイスでないといけない。
+それぞれのVPC間でのネットワーク設定とかしなくてTransit Gatewayに全て集約することができる。
+サブネットにENIをアタッチしてそれを介して通信を行う。（ENI用のサブネットを作成するのがおすすめ）
+VPC間VPN間DirectConnect間を多拠点接続をフルマネージドで行える
+
+VPC間のEC2で通信とかできる（制限する時はNACLとかサブネットでIP制限とかすれば良いし・もちろんTransit Gateway内のルートテーブルでも制限できる）
+一つのVPCだけインターネットGatewayがアタッチされNATgatewayがあってprivate SubnetにENIをアタッチしといて他のVPCからTransit Gateway経由でそのVPCからインターネットへOutboundトラフィックをとかもできる（Outbound VPCの構成）
+
 AWS Transit Gateway を利用して、多数のVPCを管理することができます。AWS Transit Gateway を使用すれば、中央のゲートウェイからネットワーク上にある Amazon VPC、オンプレミスのデータセンター、リモートオフィスそれぞれに単一の接続を構築して管理するのみでよいのです。Transit Gateway がハブの役割を果たし、トラフィックがスポークのように接続されたネットワーク間をどのようにルーティングするか等をすべて制御します。
 
 AWS Transit Gateway では統計とログが提供されます。これらは、Amazon CloudWatch や Amazon VPC フローログなどのサービスで使用されます。Amazon CloudWatch を使用して、Amazon VPC と VPN 接続間の帯域幅の使用量、パケットフロー数、パケットドロップ数を取得できます。また、AWS Transit Gateway で Amazon VPC フローログを有効にできるため、AWS Transit Gateway を使用してルーティングされた IP トラフィックに関する情報を取得できます
@@ -111,6 +124,10 @@ AWS Transit Gateway では統計とログが提供されます。これらは、
 
 ## Transit Gateway network manager
 AWS Transit Gateway network manager は、ネットワークトポロジーの変更、ルーティングの更新、接続ステータスの更新に関する組み込みのイベント通知を提供します。
+
+## Transit Gatewayを使わなくて良いケース
+料金が高いのでVPC間通信とDirect ConnectとVPC間接続だけだったら
+VPCピアリング＋Direct Connect Gatewayで賄える
 
 # VPC
 ## IPアドレス枯渇
