@@ -27,6 +27,10 @@ Appサーバーの起動の終了後に発火
 また、インスタンス設定ではサブネットやセキュリティグループ、バックアップの時間などを指定することができるようになっているほか、Chefコミュニティで配布されているCookbookなどと互換性があるため、サンプルコードとして利用することができます。
 Chef Automateと言うサービスがAWS上で使用できるので今までChef Automate使ってる場合は便利
 
+# CodeCommit
+## 他のレポジトリサービスからの移行
+レポジトリをクローンし、CodeCommitにPushする
+
 # Code Star
 開発環境のスキャホールドと言えます。リポジトリ（CodeCommit）からビルド（CodeBuild）、そしてデプロイ（CodeDeploy）がCodePipelineでシームレスに繋がります。さらにデプロイするEC2インスタンスやBeanstlak環境も作成します。 開発者は、 最小限の情報を入力することで、AWS上で動くアプリケーション環境と最小限のソースコードを手に入れることができる。
 VScodeなどの開発ツール連携してて、CI・CDの環境とつながることもできる。
@@ -45,6 +49,13 @@ Resource Tags プロパティを使用してリソースにタグを適用し、
 
 ## CreationPolicy 属性
 CreationPolicy 属性をリソースに関連付けて、AWS CloudFormation が指定数の成功シグナルを受信するかまたはタイムアウト期間が超過するまでは、ステータスが作成完了にならないようにします。リソースにシグナルを送信するには、cfn-signal ヘルパースクリプトまたは SignalResource API を使用できる。
+EC2とAuto ScalingリソースについてはWaitConditionよりCreation Policy推奨
+
+## WaitCondition
+次のような状況で待機条件を使用できます。
+- スタックの作成の外部での設定アクションを使ったスタックリソース作成を調整するため
+- 設定プロセスのステータスを追跡するため
+EC2とAuto ScalingリソースについてはWaitConditionよりCreation Policy推奨
 
 ### ResourceSignalパラメーター
 timeoutを指定することでタイムアウト時間を設定することができる。
@@ -52,14 +63,18 @@ timeoutを指定することでタイムアウト時間を設定することが�
 ### cfn-signal
 cfn-signalヘルパースクリプトはAWS CloudFormationに信号を送り、Amazon EC2インスタンスが正常に作成または更新されたかどうかを示します。インスタンスにソフトウェアアプリケーションをインストールして設定する場合、それらのソフトウェアアプリケーションの準備ができたらAWS CloudFormationにシグナルを送ることができます。
 
-### transform
-CloudFormationのオプションの Transform セクションでは、CloudFormation テンプレートを処理するために使用するマクロを 1 つ以上指定します。Transform セクションではテンプレート内で 1 つ以上のマクロを宣言できます。マクロは、AWS CloudFormation によって、指定された順序で実行されます。変更セットを作成すると、AWS CloudFormation は処理されたテンプレートコンテンツを含む変更セットを生成します。その後、変更内容を確認して変更セットを実行できます。
-
-AWS::Serverless Transformの設定において、使用する AWS SAM バージョンを指定することが必要
+## SAMテンプレート
+AWS :: Serverless :: Api　はSAMフレームワークのAPIゲートウェイリソース用に設計されている
+AWS :: Serverless :: Functionは、Lambda関数、IAM実行ロール、イベントソースマッピングを作成するSAMリソース
 
 ### Lambdaのコード
 AWS::Lambda::Functionを利用して、Lambda 関数のデプロイパッケージをCloudFormationで参照します。すべてのランタイムに対して、Amazon S3 内のオブジェクトの場所を指定できます。
 Node.js および Python 関数の場合で依存関係がない限りテンプレートにインラインで関数コードを指定できます。
+
+### transform
+CloudFormationのオプションの Transform セクションでは、CloudFormation テンプレートを処理するために使用するマクロを 1 つ以上指定します。Transform セクションではテンプレート内で 1 つ以上のマクロを宣言できます。マクロは、AWS CloudFormation によって、指定された順序で実行されます。変更セットを作成すると、AWS CloudFormation は処理されたテンプレートコンテンツを含む変更セットを生成します。その後、変更内容を確認して変更セットを実行できます。
+
+AWS::Serverless Transformの設定において、使用する AWS SAM バージョンを指定することが必要
 
 # デプロイ戦略
 ## ローリングアップグレード

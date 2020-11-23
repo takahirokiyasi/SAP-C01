@@ -35,6 +35,7 @@ SQSとAmazon Kinesis Data Streamsを一緒に利用する必要はない
 データの種類や用途に応じてストリームを作成する。ストリームは１つ以上のシャードによって構成される。
 データは「データレコード」と呼ばれる
 データレコードにはシーケンス番号がふられ、順番が保証される
+タスクの実行にはLambdaなどが必要
 
 ### Kinesis エージェント
 スタンドアロンの Java ソフトウェアアプリケーションで、データを収集して Kinesis Data Streams に送信する簡単な方法を提供する。
@@ -57,9 +58,21 @@ Kinesisストリーム内のインスタンスのサイズとシャードの数�
 動画はこちらを使う
 ### HTTP Live Streaming (HLS)機能
 Kinesis Video Streams の HTTP Live Streaming (HLS) 機能を使用して、ライブ動画や録画したメディアを Kinesis Video Streams からお使いのブラウザまたはモバイルアプリケーションに簡単にストリーミングできます。
+HLSをサポートするサードパーティプレーヤーを使用してKinesis Video Streamsと統合できる
 #### GetHLSStreamingSessionURL API
 GetHLSStreamingSessionURL APIによりHLSストリーミングセッションURLを取得することができます。
 HLSストリーミングセッションURLを取得したら、ビデオを再生できるビデオプレーヤーに提供します。 
+
+Amazon Kinesis ビデオストリームは以下の３つの形式を利用できます。
+### GetMedia:
+GetMedia API を使用して、Kinesis ビデオ ストリームを処理する独自のアプリケーションを構築します。GetMedia は低レイテンシーのリアルタイム API です。GetMedia を使用するプレーヤーを作成する場合は 、自分で構築する必要があります。 
+
+### HLS
+HTTP Live Streaming (HLS) は、業界標準の HTTP ベースのメディアストリーミング通信プロトコルです。HLS を使用して、ライブ再生またはアーカイブ済み動画の再生用に Amazon Kinesis ビデオストリーム を表示できます。
+
+### MPEG-DASH
+Dynamic Adaptive Streaming over HTTP (DASH) (MPEG-DASH とも呼ばれる) は、従来の HTTP ウェブサーバーから配信されたインターネット経由で高品質のストリーミングを可能にする適応ビットレートストリーミングプロトコルです。 
+
 
 
 ## Kinesis Client Library(KCL)
