@@ -67,14 +67,16 @@ cfn-signalヘルパースクリプトはAWS CloudFormationに信号を送り、A
 AWS :: Serverless :: Api　はSAMフレームワークのAPIゲートウェイリソース用に設計されている
 AWS :: Serverless :: Functionは、Lambda関数、IAM実行ロール、イベントソースマッピングを作成するSAMリソース
 
-### Lambdaのコード
-AWS::Lambda::Functionを利用して、Lambda 関数のデプロイパッケージをCloudFormationで参照します。すべてのランタイムに対して、Amazon S3 内のオブジェクトの場所を指定できます。
-Node.js および Python 関数の場合で依存関係がない限りテンプレートにインラインで関数コードを指定できます。
-
-### transform
+### Transform
+SAM構文を通常のCloudFromationに変換する方法を指定するもの（自分で定義することも可能）
 CloudFormationのオプションの Transform セクションでは、CloudFormation テンプレートを処理するために使用するマクロを 1 つ以上指定します。Transform セクションではテンプレート内で 1 つ以上のマクロを宣言できます。マクロは、AWS CloudFormation によって、指定された順序で実行されます。変更セットを作成すると、AWS CloudFormation は処理されたテンプレートコンテンツを含む変更セットを生成します。その後、変更内容を確認して変更セットを実行できます。
 
 AWS::Serverless Transformの設定において、使用する AWS SAM バージョンを指定することが必要
+AWS::Serverless-2016-10-31
+
+### Lambdaのコード
+AWS::Lambda::Functionを利用して、Lambda 関数のデプロイパッケージをCloudFormationで参照します。すべてのランタイムに対して、Amazon S3 内のオブジェクトの場所を指定できます。
+Node.js および Python 関数の場合で依存関係がない限りテンプレートにインラインで関数コードを指定できます。
 
 # デプロイ戦略
 ## ローリングアップグレード
