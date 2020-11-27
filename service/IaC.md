@@ -66,6 +66,8 @@ cfn-signalヘルパースクリプトはAWS CloudFormationに信号を送り、A
 ## SAMテンプレート
 AWS :: Serverless :: Api　はSAMフレームワークのAPIゲートウェイリソース用に設計されている
 AWS :: Serverless :: Functionは、Lambda関数、IAM実行ロール、イベントソースマッピングを作成するSAMリソース
+AWS :: Serverless ::SimpleTableはDynamoDB
+AWS :: Serverless :: Application はServerless Application Repositoryに存在するアプリケーションをデプロイ
 
 ### Transform
 SAM構文を通常のCloudFromationに変換する方法を指定するもの（自分で定義することも可能）
@@ -75,8 +77,18 @@ AWS::Serverless Transformの設定において、使用する AWS SAM バージ�
 AWS::Serverless-2016-10-31
 
 ### Lambdaのコード
-AWS::Lambda::Functionを利用して、Lambda 関数のデプロイパッケージをCloudFormationで参照します。すべてのランタイムに対して、Amazon S3 内のオブジェクトの場所を指定できます。
-Node.js および Python 関数の場合で依存関係がない限りテンプレートにインラインで関数コードを指定できます。
+AWS::Lambda::Functionを利用して、Lambda 関数のデプロイパッケージをCloudFormationで参照します。すべてのランタイムに対して、Amazon S3 内のオブジェクトの場所を指定できます。(CodeUri)
+CLIを利用すると自動でZipに固めて、指定したS3のバケットにアップロードし、CodeUriの値がS3のUriに変更される。
+Node.js および Python 関数の場合で依存関係がない限りテンプレートにインラインで関数コードを指定できます。(CodeInline)
+
+### LambdaのEventプロパティ
+#### typeプロバティ
+何をトリガーにするか決めるところAPI gatewayとか選べる
+S3をトリガーにする場合のみテンプレートでバケットを新規作成し、Ref関数で指定しないといけない。
+
+#### properties
+API Gatewayの場合pathやMethodを指定するだけでAPI Gatewayのリソースも勝手に作成される。(詳細な設定をする場合はRefで参照すればいい)
+
 
 # デプロイ戦略
 ## ローリングアップグレード
