@@ -31,6 +31,7 @@ AWS Glue では、AWS に保存されたデータを指定するだけで AWS Gl
 # Kinesis
 ## Kinesis Data Streams
 レコードの順序付け、および複数のAmazon Kinesisアプリケーションに対して同じ順序でレコードを読み取ったり再生したりする機能を提供
+デフォルトで２４時間レコードを保持する
 SQSとAmazon Kinesis Data Streamsを一緒に利用する必要はない
 データの種類や用途に応じてストリームを作成する。ストリームは１つ以上のシャードによって構成される。
 データは「データレコード」と呼ばれる
@@ -38,12 +39,34 @@ SQSとAmazon Kinesis Data Streamsを一緒に利用する必要はない
 タスクの実行にはLambdaなどが必要
 
 ### Kinesis エージェント
+データ送信側(プロデューサー)
 スタンドアロンの Java ソフトウェアアプリケーションで、データを収集して Kinesis Data Streams に送信する簡単な方法を提供する。
 
 ### Kinesis Producer Library(KPL)
+データ送信側(プロデューサー)
 Kinesis Data Streamsにデータを送信するOSSのライブラリ
 
-### KCL Worker
+Aggregation：複数件のデータを 1 データレコードに集約して送信可能
+Collection：複数のレコードをバッファリングして送信
+
+### Fluent plugin for Amazon Kinesis
+データ送信側(プロデューサー)
+Fluentd をログ収集に使っているなら、このプラグインを追加するだけで AmazonKinesis へのデータ投入がすぐにできる
+
+### Amazon Kinesis Data Generator (KDG)
+データ送信側(プロデューサー)
+Amazon Kinesis Streams または Amazon Kinesis Firehose に`テストデータ`を簡単に送信できる
+
+### Amazon Kinesis Client Library(KCL)
+コンシューマー (データ処理側)
+Java、Ruby、Python、Node.js の開発に利用できる OSSのクライアントライブラリ
+
+1. Record Processor Factory 
+  レコードプロセッサーを作る
+2. Record Processor
+Amazon Kinesis Streamsのシャードから取り出したデータを処理するプロセッサーの単位
+3. Worker
+個々のアプリケーションインスタンスとマッピングする処理単位
 KCL WorkerはStreamと対応してログを受け取るプログラムのこと
 
 ### シャードが不十分な場合の対処法
@@ -81,10 +104,14 @@ Kinesisアプリケーションを構築し、ストリーミングデータを�
 ## Kinesis Data Firehose
 ストリーミングデータをデータレイクやデータストア、分析ツールに確実にロードする
 ストリーミングデータをキャプチャして変換し、Amazon S3、Amazon Redshift、Amazon Elasticsearch Service、Splunk にロードする
+配信ストリームを作成してデータを配信
+Lambdaを利用したデータの変形が可能
 
 ## Amazon Kinesis S3コネクター
 Amazon Kinesis から Amazon S3 にデータをアーカイブすることができます。Amazon Kinesis コネクタライブラリを使用すると Amazon Kinesis を他の AWS サービスやサードパーティー製ツールと簡単に統合できるようになります。
 Amazon Kinesis コネクタライブラリを使用するには、Amazon Kinesis クライアントライブラリ (KCL) が必要です。このライブラリの現在のバージョンでは、Amazon DynamoDB、Amazon Redshift、Amazon S3、Amazon Elasticsearch Service に対するコネクタが提供されています。
 
 ## Kinesis Analytics
-ストリームデータを標準的なSQLクエリでリアルタイムに分析
+datastreamやfirehoseからデータを受け取る
+ストリームデータを標準的なSQLクエリでリアルタイムに分析　分析結果を再度DataStreamsやFirehoseに流すこと可能
+SQLクエリ実行前に、Lambdaによる前処理可能

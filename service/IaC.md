@@ -67,7 +67,7 @@ cfn-signalヘルパースクリプトはAWS CloudFormationに信号を送り、A
 AWS :: Serverless :: Api　はSAMフレームワークのAPIゲートウェイリソース用に設計されている
 AWS :: Serverless :: Functionは、Lambda関数、IAM実行ロール、イベントソースマッピングを作成するSAMリソース
 AWS :: Serverless ::SimpleTableはDynamoDB
-AWS :: Serverless :: Application はServerless Application Repositoryに存在するアプリケーションをデプロイ
+AWS :: Serverless :: Application はServerless Application Repositoryに存在するアプリケーションやSAMテンプレートからアプリケーションをデプロイ
 
 ### Transform
 SAM構文を通常のCloudFromationに変換する方法を指定するもの（自分で定義することも可能）
@@ -81,6 +81,16 @@ AWS::Lambda::Functionを利用して、Lambda 関数のデプロイパッケー�
 CLIを利用すると自動でZipに固めて、指定したS3のバケットにアップロードし、CodeUriの値がS3のUriに変更される。
 Node.js および Python 関数の場合で依存関係がない限りテンプレートにインラインで関数コードを指定できます。(CodeInline)
 
+#### AutoPublishAlias
+liveにすることで
+lambdaの関数をバージョン管理することができる
+DeploymentPreferenceを指定することでCodeDeployと自動で連携し、カナリアデプロイなどが可能
+
+##### デプロイの種類
+Canary10Percent30Minutes 10%を最新バージョンで実行し、30分後に全てが最新バージョンで実行される
+All At Onece　全てのLambda関数の実行を最新バージョンで行う
+Linear10PercentEvery10Minutes Lambda関数の実行のうち10%を最新バージョンで実行し、10分ごとに10%最新のバージョンを増やす 
+
 ### LambdaのEventプロパティ
 #### typeプロバティ
 何をトリガーにするか決めるところAPI gatewayとか選べる
@@ -88,7 +98,11 @@ S3をトリガーにする場合のみテンプレートでバケットを新規
 
 #### properties
 API Gatewayの場合pathやMethodを指定するだけでAPI Gatewayのリソースも勝手に作成される。(詳細な設定をする場合はRefで参照すればいい)
-
+### SAM CLI
+#### sam local invokeコマンド
+ローカルでdocker上でLambda関数を動かすことができる
+#### sam local generate-event
+テスト用イベントの生成ができる
 
 # デプロイ戦略
 ## ローリングアップグレード
