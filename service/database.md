@@ -223,6 +223,7 @@ Redshift管理のS3でRedshiftのデータフォーマットで保存されて�
 S3のデータとRedshiftのデータを結合することも可能
 
 Athena・BigQueryとよく似た機能
+大規模データを複数クラスタで処理したい場合はAthenaよりRedshiftの方が適切か
 
 ## データレイクエクスポート
 RedshiftテーブルデータをS3上へApache Parquet形式でエクスポート可能

@@ -1,0 +1,8 @@
+# Amazon Workspaces
+デスクトップ仮想化
+
+# Amazon Connect
+コールセンター支援用のサービスのようなもの
+通話録音したりSalesForceなどのCRMとLambdaやLexやPolly使って連携したりできる
+ユーザー管理もできる
+Amazon Lexを使ったチャットボットでの対応
