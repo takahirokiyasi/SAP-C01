@@ -423,3 +423,8 @@ SAMLはActive Directory Federation Services (ADFS) などに利用されてい�
 
 # KMS
 https://dev.classmethod.jp/articles/10minutes-kms/
+
+# Amazon Macie
+`S3内`のデータを機械学習を使用してデータを自動的に特定および分類することで、`機密データ`を検出して保護するのに役立つフルマネージド型のサービス
+住所や名前、クレジットカード情報を検出できる
+Organizationでのマルチアカウントをサポート
