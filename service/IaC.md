@@ -63,6 +63,10 @@ timeoutを指定することでタイムアウト時間を設定することが�
 ### cfn-signal
 cfn-signalヘルパースクリプトはAWS CloudFormationに信号を送り、Amazon EC2インスタンスが正常に作成または更新されたかどうかを示します。インスタンスにソフトウェアアプリケーションをインストールして設定する場合、それらのソフトウェアアプリケーションの準備ができたらAWS CloudFormationにシグナルを送ることができます。
 
+## cfn-lint
+VSCodeで使えるCloudFromationのLinter
+エラーが起きるところを教えてくれる。
+
 ## SAMテンプレート
 AWS :: Serverless :: Api　はSAMフレームワークのAPIゲートウェイリソース用に設計されている
 AWS :: Serverless :: Functionは、Lambda関数、IAM実行ロール、イベントソースマッピングを作成するSAMリソース
@@ -103,6 +107,15 @@ API Gatewayの場合pathやMethodを指定するだけでAPI Gatewayのリソー
 ローカルでdocker上でLambda関数を動かすことができる
 #### sam local generate-event
 テスト用イベントの生成ができる
+
+## StackSets
+`複数のAWSアカウント、リージョン`に対しCloudFormationのスタックを作成できる機能
+### IAMロールの作成
+StackSetsを実行するアカウント（Administrationアカウント）から、他のアカウント（Targetアカウント）にリソースを作成するためのIAMロールを作成することが事前準備として必要
+Stackセットを作成するアカウントに`AWSCloudFormationStackSetAdministrationRole`を作成
+Tagetアカウントに`AWSCloudFormationStackSetExecutionRole`を作成
+
+
 
 # Service Catalog
 CloudFormationテンプレートをアップロードしてカタログ管理できる
