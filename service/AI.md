@@ -1,6 +1,5 @@
 # Rekognition
 画像からテキストデータの取り込みもできる
-
 AWS CLI または Rekognition APIを使用
 
 ## Rekognition DetectFaces
