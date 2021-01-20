@@ -55,7 +55,7 @@ Redshift・RDS・オンプレミスDB・RDBonEC2はJDBCでアクセス
 
 ## データカタログ
 Apache Hiveメタストア（テーブル定義だけを格納する機能）互換のメタデータレポジトリ
-Athena　EMR　RedshiftSpectrum GlueETLに連携可能
+データカタログにはメタデータに関するテーブルが作成される（csvがデータ元だとそれぞれのカラムの名前や型など）
 保存したスキーマをバージョン管理・変更することが可能
 
 ## Amazon S3 データレイクに対するクエリ
