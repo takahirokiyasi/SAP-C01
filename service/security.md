@@ -351,18 +351,20 @@ SAMLが利用できるアプリケーションへのSSOアクセスをするこ�
 # Directory Service
 ## Simple AD
 比較的小規模かつ的コストのマネージド型ユーザーディレクトリが必要な場合に利用できる
-AWS上に独立したドメインを作成し、Samba4プロトコルに対応したActive Directory互換のディレクトリとして利用できる。
+`AWS上に独立したドメイン`を作成し、Samba4プロトコルに対応したActive Directory互換のディレクトリとして利用できる。
+
+## AWS Directory Service for Microsoft Active Directory(AWS Managed Microsoft AD)
+既存のADインフラストラクチャを使用してAD対応ワークロードをAWSクラウドに移行する場合は、AWS Managed Microsoft AD が適当。
+AD 対応アプリケーションと AWS アプリケーションにユーザーはオンプレミス AD 認証情報でアクセスでき、そのためのユーザー、グループ、またはパスワードの同期が不要。
+オンプレミスのADと信頼関係を構築できる。
+たとえば、ユーザーは既存の AD ユーザー名とパスワードを使用して、AWS マネジメントコンソールとAmazon WorkSpaces にサインインできます。また、SharePoint などの AD 対応アプリケーションに認証情報の再入力なしでアクセスできるようになる。
+
 ## AD Connector
 オンプレミス環境やAWS上にある既存のディレクトリサービスへの認証プロキシのような役割を果たす。
 ユーザー情報を保持するわけではない。
 AD Connectorを経由することで既存のディレクトリサービスを利用して認証処理を行うことが可能
-
-## AWS Directory Service for Microsoft Active Directory(AWS Managed Microsoft AD)
-オンプレミスのADと信頼関係を構築できる。
-既存のADインフラストラクチャを使用してAD対応ワークロードをAWSクラウドに移行する場合は、AWS Managed Microsoft AD が適当。
-AD 対応アプリケーションと AWS アプリケーションにユーザーはオンプレミス AD 認証情報でアクセスでき、そのためのユーザー、グループ、またはパスワードの同期が不要。
-たとえば、ユーザーは既存の AD ユーザー名とパスワードを使用して、AWS マネジメントコンソールとAmazon WorkSpaces にサインインできます。また、SharePoint などの AD 対応アプリケーションに認証情報の再入力なしでアクセスできるようになる。
-[AWS Managed Microsoft ADのユースケース](https://docs.aws.amazon.com/ja_jp/directoryservice/latest/admin-guide/ms_ad_use_cases.html)
+前提条件としてVPCがオンプレとVPNかDirectConnectで繋がっている必要がある。２つのサブネットが必要
+https://dev.classmethod.jp/articles/try-active-directory-connector/
 
 # 認証・認可の基本知識
 # 仕組み・機能
