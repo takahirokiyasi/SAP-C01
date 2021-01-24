@@ -4,6 +4,17 @@ ChefやPuppetなどのサーバー設定ツールを元にした`ミドルウェ
 主にEC2上のミドルウェアやアプリケーションの設定管理を担い、デプロイ、モニタリング、スケーリングを行う。
 CloudformationでOpsWorksを構築することも可能
 
+## 構造
+### スタック
+Opsworksのトップエンティティ
+### レイヤー
+アプリケーションサーバーやDBサーバーなど、特定の目的を果たすEC2インスタンスのセットを表すもの
+#### Elastic Load Balancing Layer
+通常のOpsWorksスタックのレイヤーとは少し異なり、
+### インスタンス
+アプリケーションを提供するためのEC2インスタンスのこと
+複数のレイヤーに所属することができる
+
 ## CloudFormation + Opsworks
 CloudFormation内でOpsWorksコンポーネント（スタック・レイヤー・インスタンス・アプリケーション）をモデリングし、それらをCloudformation スタックとしてプロビジョニングすることができる
 
@@ -16,11 +27,14 @@ CloudFormation内でOpsWorksコンポーネント（スタック・レイヤー�
 
 ## Opsworksスタックのライフサイクルイベント
 - Setup
-Appサーバーの起動の終了後に発火
+インスタンスの初期化・正常起動時
 - Configure
+スタックの状態が変化する時
 - Deploy
 - Undeploy
+アプリケーションが削除された時
 - shutdown
+インスタンスが停止する45秒前
 
 ## AWS Opsworks for Chef Automate
 完全マネージド型のChefサーバを数クリックで作成し、ワークフローの自動化を設定することができます。
