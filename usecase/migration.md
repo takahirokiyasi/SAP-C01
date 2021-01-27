@@ -4,3 +4,5 @@
 - 最大CPU数やメモリサイズが不足する場合
 - メンテナンス時間を完全にコントロールしたい場合
 - OS（カーネル）に何か特殊な設定が必要な場合
+
+https://www.slideshare.net/AmazonWebServicesJapan/rdbmsaws-75043784?ref=https://dev.classmethod.jp/

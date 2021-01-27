@@ -314,6 +314,7 @@ rsyncコマンド
 
 以下作成方法４つ
 コンソール&CLI
+
 ### Amazon Data Lifecycle Manager(DLM)
 ※EBS固有の機能ではない
 Amazon EBS ボリュームをバックアップするスナップショットの作成、保持、削除を自動化できます。
@@ -345,6 +346,16 @@ EC2インスタンスはEBSボリュームと同一アベイラビリティゾ�
 ECS Cluster Auto Scalingを有効にするには、Capacity Providerと呼ばれる新たな項目を設定する必要があります。
 1つのCapacity Providerは1つのEC2 Auto Scalingグループに関連付けられます。
 あるAuto ScalingグループにECS Capacity Providerを関連付けてから、ECSクラスターにCapacity Providerを追加すると、クラスターを自動スケールできるようになります。
+
+# EKS
+Kubernetes は、コンテナ化されたアプリケーションのデプロイ、スケーリング、および管理を自動化するためのオープンソースシステムです。Amazon EKSはユーザーに代わって他のAWSサービスを呼び出してサービスで使用するリソースを管理します
+
+１つのVPC内に２つのAZにクラスターを構成することが必要
+
+## RBAC(Role-based access control)
+役割ベースのアクセス制御機能
+
+https://qiita.com/taishin/items/dfb9a5620f37ffb74fe9
 
 # ELB
 ## スティッキーセッション

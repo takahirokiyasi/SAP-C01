@@ -135,8 +135,10 @@ VPCピアリング＋Direct Connect Gatewayで賄える
 最大4つのセカンダリーCIDRブロックを関連付けてVPCに追加することにより、ネットワークをさらに拡張することができる。
 
 ## DHCP オプション
-一度DHCPオプションのセットを作成すると、それらを変更できないため、 DHCPオプションの新しいセットを作成し、VPCに関連付ける必要がある。
-新しいDHCPオプションを作成して、 domain-name-servers=AmazonProvidedDNS を指定してVPCに関連付けを実施することで、エラーを回避することができる。
+一度DHCPオプションのセットを作成すると、それらを変更できないため、DHCPオプションの新しいセットを作成し、VPCに関連付ける必要がある。
+新しいDHCPオプションを作成して、 domain-name-servers=AmazonProvidedDNSを指定してVPCに関連付けを実施することで、エラーを回避することができる。  
+[VPCのDNSについてAmazonProvidedDNS・DNS Resolution・DNS Hostname・DHCP Options Sets](https://blog.serverworks.co.jp/tech/2017/04/03/vpc-dns-matome/)
+
 ## VPCフローログ
 ネットワークトラフィックをキャプチャしCloudWatchLogsへPublishする機能
 ネットワークインターフェイスを送信元・送信先とするトラフィックが対象
