@@ -460,6 +460,9 @@ AWS Step Functions では、AWS の複数のサービスをサーバーレスの
 ## AWS Step Functions Expressワークフロー
 AWS Step Functions ワークフローの新しいワークフロータイプです。これにより、AWS のコンピューティング、データベース、メッセージングサービスを毎秒 100,000 件を超えるイベントレートでコスト効率よく調整できます。Express Workflow は、Amazon API Gateway を介した HTTP リクエスト、AWS Lambda リクエスト、AWS IoT ルールエンジンのアクション、および Amazon EventBridge の 100 件以上の AWS および SaaS イベントソースなどのイベントに応じて、自動的に開始されます。Express Workflows は、`IoT データ`の取り込み、`ストリーミングデータの処理と変換`、大量のマイクロサービスオーケストレーションなどの大量のイベント処理ワークロードに適しています。
 
+## SWF マーカー
+カスタム情報を記録する場合に使用する。マーカーを使用して、再帰的なワークフローでループの数を数えることができたりする。
+
 # App Sync
 AppSyncはAWSの管理系GraphQLサービスにて、ApolloやPrismaと比べてAWSからインフラやサーバーまで提供してくれるサービス
 デバイス間でアプリケーションデータを同期するためのサービス
