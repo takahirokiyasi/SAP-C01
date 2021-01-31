@@ -255,6 +255,14 @@ Amazon EC2 インスタンスおよび他の AWS リソースの一般的なメ�
 ### 通知の受信
 Amazon CloudWatch Eventsを使用して自動化タスクおよびワークフローに関する通知を受信
 
+## System Manager Run Command
+WindowsまたはLinuxインスタンスのコマンドを実行するサービス
+
+### 使用するのに必要な前提環境
+- SSM Agentがインスタンスにインストール済み
+- System Manager APIを利用するロールが付与されている
+- System Manager エンドポイントへのHttpsのアウトバントトラフィックが許可されていること
+
 ## AWS Systems Manager Patch Manager
 パッチルールの準拠の確認・インスタンスへのパッチ適用が可能
 Patch Manager を使用して、オペレーティングシステムとアプリケーションの両方にパッチを適用することができる。
