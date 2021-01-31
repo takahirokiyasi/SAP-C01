@@ -346,6 +346,13 @@ ALB・CLBにおいては接続・リクエストが瞬間的に急増した場�
 対策としてpre-warming(暖気運転)の申請を行うか、自前で負荷を段階的にかけてスケールさせておく必要あり
 NLBは突発的なリクエストでも処理可能
 
+## ヘルスチェックの注意点
+現在のヘルスチェックは`EC２インスタンス`が正常かどうかを確認しているだけです。
+そのため、EC２インスタンスは正常に起動しているにも関わらず、アプリケーション自体が完全に機能しているかどうかを確認していない場合がある。
+EC2インスタンス上に設置されたアプリケーションの通信上のヘルスチェックを実施する設定とすることが必要
+[ヘルスチェックの追加](https://docs.aws.amazon.com/ja_jp/autoscaling/ec2/userguide/as-add-elb-healthcheck.html)
+[Route53とELBのヘルスチェックの違い](https://dev.classmethod.jp/articles/health-check-spec-elb-route53/)
+
 # AWS Global Accelerator
 ALB NLBが対応
 ユーザーが近いエッジリージョンからGlobal Networkを経由して最も近いリージョンにアクセス可能
