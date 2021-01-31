@@ -69,6 +69,11 @@ AWS Configのマルチアカウント、マルチリージョンのデータ集�
 # AWS X-Ray
 本番環境や分散アプリケーション (マイクロサービスアーキテクチャを使用して構築されたアプリケーションなど) を分析およびデバッグできる。
 
+## X-Ray デーモン
+未加工のセグメントデータを収集してAWS X-Ray APIに中継するソフトウェアアプリケーションです。
+デーモンはAWS X-Ray SDKと連動します。
+LambdaとElastic Beamstalkで使える。
+
 # CloudWatch
 ## CloudWatch Logs
 ### CloudWatch Logs Insights
