@@ -77,6 +77,7 @@ HVM AMI は、完全に仮想化された一連のハードウェアを備えて
 高いネットワークパフォーマンスを実現
 
 ## Auto Scalingグループ
+プライベートサブネットにある場合はPrivate Linkを使用することでVPCにAmazon EC2 Auto Scaling API の間に接続を確立できる。
 ### CLIコマンド
 terminate-instance-in-auto-scaling-group CLIコマンドにより、指定されたインスタンスを終了し、必要に応じて必要なグループサイズを調整します。この呼び出しは、インスタンスがただちに終了しないように、終了要求を行います。
 
