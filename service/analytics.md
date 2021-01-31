@@ -101,12 +101,12 @@ Spark　ETLジョブの進捗状況をリアルタイムに追跡できる機能
 # Kinesis
 ## Kinesis Data Streams
 レコードの順序付け、および複数のAmazon Kinesisアプリケーションに対して同じ順序でレコードを読み取ったり再生したりする機能を提供
-デフォルトで２４時間レコードを保持する
-SQSとAmazon Kinesis Data Streamsを一緒に利用する必要はない
-データの種類や用途に応じてストリームを作成する。ストリームは１つ以上のシャードによって構成される。
-データは「データレコード」と呼ばれる
-データレコードにはシーケンス番号がふられ、順番が保証される
-タスクの実行にはLambdaなどが必要
+- デフォルトで２４時間レコードを保持する
+- SQSとAmazon Kinesis Data Streamsを一緒に利用する必要はない
+- データの種類や用途に応じてストリームを作成する。ストリームは１つ以上のシャードによって構成される。
+- データは「データレコード」と呼ばれる
+- データレコードにはシーケンス番号がふられ、順番が保証される
+- タスクの実行にはLambdaなどが必要
 
 ### Kinesis エージェント
 データ送信側(プロデューサー)
@@ -130,6 +130,7 @@ Amazon Kinesis Streams または Amazon Kinesis Firehose に`テストデータ`
 ### Amazon Kinesis Client Library(KCL)
 コンシューマー (データ処理側)
 Java、Ruby、Python、Node.js の開発に利用できる OSSのクライアントライブラリ
+Kinesisアプリケーションを構築し、ストリーミングデータを使用してリアルタイムダッシュボードの強化、アラートの生成、動的な価格設定と広告の実装などを行うことができます。 Kinesis Data StreamsからAmazon Simple Storage Service（Amazon S3）、Amazon Redshift、Amazon EMR、AWS Lambdaなどの他のAWSサービスにデータを送信することが可能です。今回は目的であれば、大量のストリームデータをS3に蓄積して、 Redshiftによる解析を実施することができます
 
 1. Record Processor Factory 
   レコードプロセッサーを作る
@@ -149,26 +150,22 @@ Kinesisストリーム内のインスタンスのサイズとシャードの数�
 
 ## Amazon Kinesis Video Streams
 動画はこちらを使う
+
 ### HTTP Live Streaming (HLS)機能
+HTTP Live Streaming (HLS) は、業界標準の HTTP ベースのメディアストリーミング通信プロトコルです。HLS を使用して、ライブ再生またはアーカイブ済み動画の再生用に Amazon Kinesis ビデオストリーム を表示できます。
+
 Kinesis Video Streams の HTTP Live Streaming (HLS) 機能を使用して、ライブ動画や録画したメディアを Kinesis Video Streams からお使いのブラウザまたはモバイルアプリケーションに簡単にストリーミングできます。
 HLSをサポートするサードパーティプレーヤーを使用してKinesis Video Streamsと統合できる
+
 #### GetHLSStreamingSessionURL API
 GetHLSStreamingSessionURL APIによりHLSストリーミングセッションURLを取得することができます。
 HLSストリーミングセッションURLを取得したら、ビデオを再生できるビデオプレーヤーに提供します。 
 
-Amazon Kinesis ビデオストリームは以下の３つの形式を利用できます。
-### GetMedia:
-GetMedia API を使用して、Kinesis ビデオ ストリームを処理する独自のアプリケーションを構築します。GetMedia は低レイテンシーのリアルタイム API です。GetMedia を使用するプレーヤーを作成する場合は 、自分で構築する必要があります。 
-
-### HLS
-HTTP Live Streaming (HLS) は、業界標準の HTTP ベースのメディアストリーミング通信プロトコルです。HLS を使用して、ライブ再生またはアーカイブ済み動画の再生用に Amazon Kinesis ビデオストリーム を表示できます。
+### GetMedia API
+GetMedia API を使用して、Kinesis ビデオ ストリームを処理する独自のアプリケーションを構築します。GetMedia は低レイテンシーのリアルタイム API です。GetMedia を使用するプレーヤーを作成する場合は、自分で構築してビルドする必要があるため、めんどくさいから基本的に`GetHLSStreamingSessionURL API`を使用する方が良い。
 
 ### MPEG-DASH
 Dynamic Adaptive Streaming over HTTP (DASH) (MPEG-DASH とも呼ばれる) は、従来の HTTP ウェブサーバーから配信されたインターネット経由で高品質のストリーミングを可能にする適応ビットレートストリーミングプロトコルです。 
-
-
-## Kinesis Client Library(KCL)
-Kinesisアプリケーションを構築し、ストリーミングデータを使用してリアルタイムダッシュボードの強化、アラートの生成、動的な価格設定と広告の実装などを行うことができます。 Kinesis Data StreamsからAmazon Simple Storage Service（Amazon S3）、Amazon Redshift、Amazon EMR、AWS Lambdaなどの他のAWSサービスにデータを送信することが可能です。今回は目的であれば、大量のストリームデータをS3に蓄積して、 Redshiftによる解析を実施することができます。
 
 ## Kinesis Data Firehose
 ストリーミングデータをデータレイクやデータストア、分析ツールに確実にロードする
