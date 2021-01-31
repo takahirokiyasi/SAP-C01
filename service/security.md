@@ -186,7 +186,7 @@ SAMLが利用できるアプリケーションへのSSOアクセスをするこ�
 
 ## AWS Directory Service for Microsoft Active Directory(AWS Managed Microsoft AD)
 既存のADインフラストラクチャを使用してAD対応ワークロードをAWSクラウドに移行する場合は、AWS Managed Microsoft AD が適当。
-AD 対応アプリケーションと AWS アプリケーションにユーザーはオンプレミス AD 認証情報でアクセスでき、そのためのユーザー、グループ、またはパスワードの同期が不要。
+AD 対応アプリケーションと AWS アプリケーションにユーザーはオンプレミスAD 認証情報でアクセスでき、そのためのユーザー、グループ、またはパスワードの同期が不要。
 オンプレミスのADと信頼関係を構築できる。
 たとえば、ユーザーは既存の AD ユーザー名とパスワードを使用して、AWS マネジメントコンソールとAmazon WorkSpaces にサインインできます。また、SharePoint などの AD 対応アプリケーションに認証情報の再入力なしでアクセスできるようになる。
 

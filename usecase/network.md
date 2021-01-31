@@ -49,7 +49,7 @@ ALBは、Server Name Indication（SNI）を使用して、各クライアント�
 https://dev.classmethod.jp/articles/alb-support-sni/
 
 # cloudfrontでThe request could not be satisfied.Bad Request.のエラー
-- リクエストが HTTP を通じて開始されたが、CloudFront ディストリビューションは HTTPS のリクエストだけを許可するように設定されている。この場合は、ビューワーのプロトコルポリシーにおいて、[HTTP and HTTPS  または Redirect HTTP to HTTPSのいずれかを選択します。したがって、オプション２が正解となります。
+- リクエストが HTTP を通じて開始されたが、CloudFront ディストリビューションは HTTPS のリクエストだけを許可するように設定されている。この場合は、ビューワーのプロトコルポリシーにおいて、[HTTP and HTTPS  または Redirect HTTP to HTTPSのいずれかを選択します。
 
 - リクエストされた代替ドメイン名 (CNAME) が CloudFront ディストリビューションと関連付けられていない。この場合はloudFront ディストリビューションと関連付ける CNAME を入力します。
 

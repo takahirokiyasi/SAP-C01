@@ -1,13 +1,11 @@
 # ENI (Elastic Network Interface)
 IPアドレス・MACアドレス・セキュリティグループなどの属性を保持できる
-## ENI プール
 
 ## ENIでEC2に複数のSSL証明書を処理
 1つのEC2インスタンスに複数のENI（Elastic Network Interface）を接続することで対応ができます。ENIは、仮想ネットワークカードを表すVPCの論理ネットワークコンポーネントであり、このシナリオでは、2つのENIをオンデマンドEC2インスタンスに接続して、2つのSSLを処理できるようにすること
 
-# インターリージョンVPCピアリング
-Gateway、VPNコネクション、ネットワークアプライアンスなどを使う事なく、  
-別のリージョンで稼働しているEC2インスタンス、RDSデータベース、LambdaファンクションなどのVPCリソースに対してPrivate IPアドレスにて通信が可能
+---
+[Amazon VPC同士の接続パターンまとめ](https://dev.classmethod.jp/articles/whitepaper-vpc-conectivity-options-02/)
 
 # VPN
 # SSL-VPN
@@ -61,8 +59,7 @@ Direct Connect Gatewayで複数のDirect Connect LocationからVGWの間に噛�
 - Direct Connect Gatewayには複数のVIFおよびVGWが接続できる
 
 `※時間あたりの料金が必要なので料金が高い`  
-direct connectを一つのリージョンにしてリージョン間VPCピアリングした場合の方が通信量に対して料金がかかるだけなので安い。
-
+direct connectを一つのリージョンにしてリージョン間VPCピアリングした場合の方が通信量に対して料金がかかるだけなので安い。（エッジ間のルーティングは普通のVPCピアリングではサポートされていないので本当にできるのか怪しい）
 Direct Connect と VPNは同じVGWを使用することができる。
 
 https://dev.classmethod.jp/articles/direct-connect-gateway/
@@ -86,13 +83,15 @@ privateLink を併用してオンプレと閉域でAWSと接続することが�
 Direct Connect  接続の AWS VPN 接続では、一貫性のあるスループットレベルを確保し、データを保護する暗号化アルゴリズムを実現します
 
 ### トランジット仮想インターフェイス
-Direct Connect ゲートウェイに関連付けられた 1 つまたは複数の Amazon VPC トランジットゲートウェイ にアクセスするには、トランジット仮想インターフェイスを使用する必要があります。
+Direct Connect ゲートウェイに関連付けられた 1 つまたは複数のAmazon VPC トランジットゲートウェイ にアクセスするには、トランジット仮想インターフェイスを使用する必要があります。
 
 ### クロスアカウント
 Connectionを所有しているAWSアカウントから他のAWSアカウントに対してVIFを提供することが可能
 
 ## LAG (Link Aggregation Group)
 専用線を論理的に集約して１０GBしか無理なところを4本束ねて４０GB可能にしたりする
+同じ帯域幅でなければ集約できない
+同じDirect Connect エンドポイントでないといけない
 
 # VGW(仮想プライベートゲートウェイ)
 `プライベート仮想インターフェイスを介して`、AWS Direct Connect 接続を、同じリージョンまたは異なるリージョンに配置されたアカウントの1つ以上のVPCに接続できる。
@@ -160,6 +159,22 @@ Nitroシステムでサポートされているインスタンスのみ（A1　C
 ## 推移的なピアリング接続をサポートしない
 AとB間・BとC間がピアリングされている場合、AからBを経由してCにアクセスする通信はVPCピアリングではできない
 A・C間でVPCピアリング（フルメッシュ設定）するかTransit VPCかTransit gatewayを使う（Transit　gatewayの方が管理が楽で、多機能）
+
+## エッジ間ルーティングをサポートしない
+ピアリング接続のVPCに次のいずれかの関係がある場合、その接続にピア関係を拡張することはできない
+- 社内ネットワークに対する VPN 接続または AWS Direct Connect 接続
+- インターネットゲートウェイ経由のインターネット接続
+- NAT デバイス経由のプライベートサブネットのインターネット接続
+- AWS のサービスへのゲートウェイ VPC エンドポイント (たとえば、Amazon S3 へのエンドポイント)
+
+具体的には VPC Aと VPC Bが VPCピアリング していて
+VPC A とオンプレが Direct Connect されている場合、 VPC Bとオンプレは接続できない。
+
+[サポートしないVPCピアリングのルーティングまとめ](https://docs.aws.amazon.com/ja_jp/vpc/latest/peering/invalid-peering-configurations.html)
+
+# インターリージョンVPCピアリング
+Gateway、VPNコネクション、ネットワークアプライアンスなどを使う事なく、  
+別のリージョンで稼働しているEC2インスタンス、RDSデータベース、LambdaファンクションなどのVPCリソースに対してPrivate IPアドレスにて通信が可能
 
 # Egress Only インターネットゲートウェイ
 送信専用のインターネットゲートウェイ
