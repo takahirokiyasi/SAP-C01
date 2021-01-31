@@ -1,7 +1,16 @@
 # SMS(Server Migration Service)
-`VMware vSphereインフラストラクチャ`または`Microsoft Hyper-V / SCVMM仮想マシン`のからAmazon EC2に`仮想マシン`をインポートすることができる。  
-AWS Server Migration Serviceは、数千のオンプレミスワークロードを従来よりも簡単に、かつ短時間でAWSに移行できるサービスです。AWS SMS では、ライブサーバーボリュームの増分レプリケーションの自動化、スケジュール設定、および追跡が可能なため、大規模なサーバーの移行作業を簡単に実施することができる。
+`VMware vSphereインフラストラクチャ`、`Azure仮想マシン`または`Microsoft Hyper-V / SCVMM仮想マシン`のからAmazon EC2に`仮想マシン`をインポートすることができる。  
+サーバー仮想マシンをクラウドホストの Amazon マシンイメージ (AMI) として段階的にレプリケートし、Amazon EC2 にデプロイする。
 EC2 VM Import を大幅に強化したサービス
+## 手順
+1. 移行先のAWSにSMSを立ち上げる
+1. Server Migration Connectorをオンプレミス側のVMwareに立ち上げる
+1. SMS Connectorが移行可能な仮想マシンの情報を移行元から自動で取得しAMIとしてS3に保管
+1. Amazon EC2を起動
+1. Route53を使ってる場合はDNSで切替
+
+
+[SMSの使い方](https://cloudnavi.nhn-techorus.com/archives/1454)
 
 # VM Import/Export
 仮想マシン(VM)イメージを既存の仮想化環境からAmazon EC2にインポートし、それを元の環境にエクスポートすることができます。この方法を使うと、アプリケーションおよびワークロードを Amazon EC2 へ移行したり、VM イメージカタログを Amazon EC2 にコピーしたり、バックアップと災害対策のために VM イメージのリポジトリを作成することができます。
