@@ -169,17 +169,25 @@ API Gatewayの場合pathやMethodを指定するだけでAPI Gatewayのリソー
 
 ## StackSets
 `複数のAWSアカウント、リージョン`に対しCloudFormationのスタックを作成できる機能
-### IAMロールの作成
-StackSetsを実行するアカウント（Administrationアカウント）から、他のアカウント（Targetアカウント）にリソースを作成するためのIAMロールを作成することが事前準備として必要
+これにより複数アカウントにまたがる設定を一括して実行できたりしたり、
+管理者アカウントは、スタックセットを作成する AWS アカウントのこと
+ターゲットアカウントはスタックセットを使用する AWS アカウントのこと
+
+### 手動でIAMロールを作成する場合(セルフマネージド型)
+StackSetsを作成するアカウント（Administrationアカウント）から、他のアカウント（Targetアカウント）にスタックセットのスタックをリソースをためのIAMロールを作成することが事前準備として必要
 Stackセットを作成するアカウントに`AWSCloudFormationStackSetAdministrationRole`を作成
 Tagetアカウントに`AWSCloudFormationStackSetExecutionRole`を作成
 
-
+### Organizationを使用する場合(サービスマネージド型)
+マスターアカウントが管理アカウントになる
+`AWSServiceRoleForCloudFormationStackSetsOrgAdmin`: 管理アカウントに作成されるロール
+`AWSServiceRoleForCloudFormationStackSetsOrgMember`: ターゲットアカウントに作成されるロール
+`stacksets-exec-xxxxxxxxxxxx`: ターゲットアカウントに作成されるロール
 
 # Service Catalog
 CloudFormationテンプレートをアップロードしてカタログ管理できる
-
 開発者側に権限を与えずに、Service　CatalogにあるCloudformationのテンプレートを起動出来たりする
+（デフォルトでは複数アカウントには共有不可だがCloudFromationのStackSetsを使用できる）
 
 ## ポートフォリオ
 ポートフォリオの単位でユーザーに製品の使用を許可することができる
