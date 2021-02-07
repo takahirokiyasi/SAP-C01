@@ -411,15 +411,68 @@ CloudFrontディストリビューションをLambda@Edge関数に関連付け�
  - CloudFront がビューワーにレスポンスを返す前 (ビューワーレスポンス)
 
 # API gateway
-## Lambdaオーソライザー
-Lambda 関数を使用して API へのアクセスを制御する API Gateway の機能です。
+
+## 統合
+### Lambda 統合
+#### Lambda プロキシ統合
+特徴
+- クライアントの API リクエストをLambda 関数に raw リクエストをそのまま渡せること
+- プロキシ統合のLambda 関数は決められた形式で返却する必要があること（ステータスコードとかヘッダーを指定したり）
+#### Lambda 非プロキシ統合（カスタム統合）
+受信リクエストデータがどのように統合リクエストにマッピングされるか、統合レスポンスデータの結果がメソッドレスポンスにどのようにマッピングされるかを指定しないといけないため少しめんどくさい
+
+### HTTP 統合
+EC2とかにバックエンドサーバー立ててALBとか間に挟んで通信
+こちらのプロキシ統合と非プロキシ統合があるがLambdaのやつと違いはほぼ同じ
+
+#### VPC link
+VPCリンクを使用すると、Application Load Balancerまたは Amazon ECS コンテナベースのアプリケーションなどの、HTTP API ルートを VPC 内のプライベートリソースに接続するプライベート統合を作成できる。
+
+### AWSサービス統合
+#### S3との統合
+#### Kinesisとの統合
+
+## APIの種類
+### HTTP API
+API Gatewayのコアな機能に特化して`低レイテンシー・低コスト`で利用したい場合に適した機能
+認証は初めはJITオーソラーザーだけだったが、LambdaとIAMが使えるようになった。
+REST APIからの移行が進んでいる
+
+### REST API
+WAFを使えたりuseage plansなどHTTP APIより多くの機能が使えたりする。
+
+[HTTP APIとREST APIの違い](https://dev.classmethod.jp/articles/amazon-api-gateway-http-or-rest/)
+
+## リソースポリシー
+
+## 認証
+### JITオーソライザー
+HTTP　APIで使える認証
+IDを取得するヘッダーと発行者のURLと
+対象者という名前のクライアントIDを指定するだけでOK
+Cognitoを使用する場合はヘッダーはAuthorization、CognitoのurlとClientIDを指定すればHTTP APIでもCognitoが使える
+
+### IAMオーソライザー
+
+### Lambdaオーソライザー
+Lambda 関数を使用してAPIへのアクセスを制御するAPI Gateway の機能
 二種類ある
-Lambda オーソライザーは、OAuth や SAML などのベアラートークン認可戦略を使用（トークンベースのオーソライザ）する、
-または発信者 ID を判断するためにリクエストパラメータを使用するカスタム認証スキームを実装する場合に便利（リクエストベースのオーソライザ）
+1. トークンベースのLambdaオーソライザー(TOKENオーソライザー) は、JSON ウェブトークン (JWT) や OAuth トークンなどのbearer tokenで発信者 IDを受け取ります。
+
+1. リクエストパラメータベースの Lambda オーソライザー (REQUESTオーソライザー) は、ヘッダー、クエリ文字列パラメータ、stageVariables、および $context 変数の組み合わせで、発信者 ID を受け取ります。
+WebSocket API では、リクエストパラメータベースのオーソライザーのみがサポートされています。
 
 https://docs.aws.amazon.com/ja_jp/apigateway/latest/developerguide/apigateway-use-lambda-authorizer.html#api-gateway-lambda-authorizer-flow
 
-Lambdaオーソライザの代わりにCongitoユーザープールを使用することも可能　
+### CognitoのUserPoolを使ったオーソライズ
+
+
+## usage plans(プランの使用)
+それぞれのエンドポイントに対して回数制限やリクエストできるメソッド（POST）とかを制限できるようになった
+顧客のAPIの予算の制約とかに応じてリクエスト回数絞ったりとかのユースケースに対応
+
+##　CORS機能
+リクエストできるドメインを制限できる
 
 ## エラー
 ### INTEGRATION_FAILURE

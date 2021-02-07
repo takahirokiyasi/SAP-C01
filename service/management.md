@@ -51,7 +51,7 @@ CloudFrontなどグローバルサービスはバージニア北部でサポー�
 またCloud Watch Eventsでコンプライアンス違反の検出イベントを発火し、Lambdaを実行してより細かい修正アクションを行うことも可能
 Slackへの通知とかもできる
 
-# 適合パック（Conformance Pack）
+## 適合パック（Conformance Pack）
 複数のConfig Rule と修復アクションをまとめることができるもの
 テンプレートがあってベストプラクティスを適用できる
 
