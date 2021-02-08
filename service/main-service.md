@@ -362,18 +362,8 @@ Kubernetes は、コンテナ化されたアプリケーションのデプロイ
 ## RBAC(Role-based access control)
 役割ベースのアクセス制御機能
 
-https://qiita.com/taishin/items/dfb9a5620f37ffb74fe9
+https://aws.amazon.com/jp/premiumsupport/knowledge-center/eks-iam-permissions-namespaces/
 
-# ELB
-## スティッキーセッション
-同じ利用者からのリクエストを同じEC2インスタンスで処理するようにルーティングする（ステートフルなサービスで使う）
-→ステートフルをステートレスにするためにセッション情報をElastiCacheなどsで管理するように改修した方が良い
-
-急激にアクセスが増加する`スパイク`にはALB+EC2の構成ではスケールアウトに時間がかかるので対応できない。
-
-## Evaluate Target Health
-Route53のALBに対しての正常性のチェック
-レイテンシーベースルーティングを使用している場合、Route 53 は、DNS クライアントまたはリゾルバーの場所からレイテンシーが最も低いレコードを返します。
 
 # Elastic Beanstalk
 

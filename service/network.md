@@ -384,6 +384,10 @@ DNS用のVPCを作成してVPCピアリングで他のVPCをつなげた上で�
 enableDnsHostnames
 enableDnsSupport
 
+## Evaluate Target Health
+Route53のALBに対しての正常性のチェック
+レイテンシーベースルーティングを使用している場合、Route 53 は、DNS クライアントまたはリゾルバーの場所からレイテンシーが最も低いレコードを返します。
+
 ### フェイルオーバーの設定
 Evaluate Target Healthをオンにする
 ALBのヘルスチェックで異常を示せるようにする
