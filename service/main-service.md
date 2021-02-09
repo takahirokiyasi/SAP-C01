@@ -436,7 +436,28 @@ WAFを使えたりuseage plansなどHTTP APIより多くの機能が使えたり
 
 [HTTP APIとREST APIの違い](https://dev.classmethod.jp/articles/amazon-api-gateway-http-or-rest/)
 
+#### エンドポイントタイプ
+作成時にエンドポイントタイプを選択できる。
+
+##### エッジ最適化APIエンドポイント
+デフォルトのエンドポイントタイプ
+地理的に分散されたクライアントに最適で、API リクエストは、最寄りの CloudFront POP (Point Of Presence) にルーティングされる。
+S3の署名付きURLの代わりでAPIGateway＋Cognitoでやる
+
+##### プライベートAPIエンドポイント
+VPCからしかアクセスできないAPIエンドポイント
+
+##### リージョンAPIエンドポイント
+同じリージョンのクライアントを対象としたエンドポイント
+
+### WebSocket API
+WebSocketのAPI
+
 ## リソースポリシー
+API Gateway リソースポリシーを使用すると、APIを以下から安全に呼び出すことができる。
+- 指定された AWS アカウントのユーザー
+- 指定されたソース IP アドレス範囲または CIDR ブロック
+- 指定された Virtual Private Cloud (VPC) または VPC エンドポイント (任意のアカウント)
 
 ## 認証
 ### JITオーソライザー
