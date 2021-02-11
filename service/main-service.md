@@ -450,9 +450,6 @@ VPCからしかアクセスできないAPIエンドポイント
 ##### リージョンAPIエンドポイント
 同じリージョンのクライアントを対象としたエンドポイント
 
-### WebSocket API
-WebSocketのAPI
-
 #### リソースポリシー
 API Gateway リソースポリシーを使用すると、APIを以下から安全に呼び出すことができる。
 - 指定された AWS アカウントのユーザー
@@ -460,6 +457,10 @@ API Gateway リソースポリシーを使用すると、APIを以下から安�
 - 指定された Virtual Private Cloud (VPC) または VPC エンドポイント (任意のアカウント)
 
 許可されていないIPからアクセスしたりすると403が返ってくる
+
+### WebSocket API
+WebSocketのAPI
+
 ## 認証
 ### JITオーソライザー
 HTTP　APIで使える認証
