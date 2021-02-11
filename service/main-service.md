@@ -484,6 +484,11 @@ https://docs.aws.amazon.com/ja_jp/apigateway/latest/developerguide/apigateway-us
 ## usage plans(使用プラン)
 それぞれのエンドポイントに対して回数制限やリクエストできるメソッド（POST）とかを制限できるようになった
 顧客のAPIの予算の制約とかに応じてリクエスト回数絞ったりとかのユースケースに対応
+REST APIの機能
+
+### APIキー
+使用プランの機能を使用するためにAPIキーを要求するエンドポイントを用意して
+顧客に配布するAPIキーを生成し、リクエストのヘッダーにセットしてもらったり、LambdaオーソライザーでAPIキーをレスポンスに含めたりできる。
 
 ##　CORS機能
 リクエストできるドメインを制限できる
