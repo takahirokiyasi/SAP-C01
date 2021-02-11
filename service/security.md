@@ -30,6 +30,12 @@ Switch Roleを活用することにより各アカウントのIAMユーザーと
 まずはスイッチ先でロールを作成し、スイッチ元でロールの切り替え機能を設定する。
 例えば開発アカウントを使って、本番環境のS3データを更新するようなケースで利用できたりする。
 機構としてはSTSのAssumeRoleを使用している。
+[switchロールの実装方法](https://dev.classmethod.jp/articles/iam-switchrole-for-beginner/)
+
+### Jumpアカウントを作成してクロスアカウントアクセス
+開発環境・本番環境など環境ごとにアカウントを分けた上でJumpアカウントを作成し、Jumpアカウントでswitchロールを使って各アカウントに対してアクセス権限を持つ構成にする。
+
+[マルチアカウントのベストプラクティス](https://d0.awsstatic.com/events/jp/2017/summit/slide/D4T2-2.pdf)
 
 ## IAM ポリシー
 ### 信頼ポリシー
