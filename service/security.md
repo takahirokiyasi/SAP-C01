@@ -107,20 +107,34 @@ AWS上に利用者専用のハードウェアがプロビジョニングされ�
 インフラストラクチャ (レイヤー 3 および 4) を標的とするすべての既知の攻撃を総合的に保護できる。
 自動的に適用されていて追加料金なし
 SYNフラッドやUDPリフレクション攻撃などの多くの一般的なDDoS攻撃を防ぐ
+`CloudFront`と`Route53`が対象
 
 ## AWS Shield Advanced
 レイヤー7の攻撃も防ぐことができる（DDos）
 Amazon CloudWatch でのほぼリアルタイムの通知と、AWS WAFとAWS Shieldマネジメントコンソールあるいは API での詳細な診断によって、DDoS 攻撃に対する完全な可視性を与えてくれる。
 AWS WAF and AWS Shieldマネジメントコンソールから以前の攻撃の要約を表示することもできる。
 
+CloudFrontとRoute53に追加で
+`ELBとEIP`とGlabalAcceleratorに対しても設定できる。
+
 ## AWS WAF
-## Web ACL
-Webアクセス制御リスト(Web ACL)は、保護されたリソースが応答するWebリクエストに対してきめ細かい制御を提供します。保護できる Amazon CloudFront, Amazon API Gateway, Application Load Balancer, and AWS AppSync リソース。
+`CloudFront`と`APIgatewayのREST API`と`ALB`と`App Sync GraphQL`に対応
+## Web ACL(WEBアクセスコントロールリスト)
+Webアクセス制御リスト(Web ACL)は、保護されたリソースが応答するWebリクエストをルールを適用して許可したり・ブロックできる。
+以下がよく利用されるルール
 - リクエストの IP アドレスの送信元
 - リクエストの送信元の国
 - リクエストの一部に含まれる文字列一致または正規表現（regex）一致
 - リクエストの特定の部分のサイズ
 - 悪意のある SQL コードまたはスクリプトの検出
+
+指定したルール以外のときどうするかのデフォルトアクションをどうするか
+
+### Web ACL キャパシティーユニット
+Web ACLに必要なリソースを定義・運用する
+
+## AWS Firewall Manager
+複数アカウントでのWAFやShieldの管理が簡単にできるやつ
 
 # CloudHSM
 クラウドベースのハードウェアセキュリティモジュール (HSM) 
