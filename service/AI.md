@@ -1,6 +1,6 @@
 # Rekognition
-画像からテキストデータの取り込みもできる
 AWS CLI または Rekognition APIを使用
+画像から人物特定とかテキスト抽出とか人の装備とかをチェックするのが得意
 
 ## Rekognition DetectFaces
 検出された各顔を含むJSON応答を返すことができる。  
