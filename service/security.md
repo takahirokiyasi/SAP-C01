@@ -255,14 +255,12 @@ AD Connectorを経由することで既存のディレクトリサービスを�
 - ２つのサブネットが必要
 https://dev.classmethod.jp/articles/try-active-directory-connector/
 
-# 認証・認可の基本知識
-# 仕組み・機能
-### SSO
-1度のログインにより複数のサービスはアクセスすることができる機能  
+# SSO
+1度のログインにより複数のサービスにアクセスすることができる機能  
 [AWS 公式　シングルサインオンの運用](https://d1.awsstatic.com/webinars/jp/pdf/services/20200722_AWSBlackbelt_%E3%82%B7%E3%83%B3%E3%82%B0%E3%83%AB%E3%82%B5%E3%82%A4%E3%83%B3%E3%82%AA%E3%83%B3%E3%81%AE%E8%A8%AD%E8%A8%88%E3%81%A8%E9%81%8B%E7%94%A8.pdf)
 AWSマネジメントコンソールへのフェデレーションアクセスではなく、AWSへのAPIアクセスのフェデレーションを実装する場合は、SSOエンドポイントではなくSTSのAssumeRoleWithSAML
 
-### IDフェデレーション
+## IDフェデレーション
 SSOを実現するための一つの手段、それぞれのID管理基盤はそのままに、ネットワークドメインをまたいで互いに“連携”させるもの（今までは社内などの単一ネットワークドメインのだけだった）
 
 ## プロトコル

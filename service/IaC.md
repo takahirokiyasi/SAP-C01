@@ -62,6 +62,8 @@ Chef Automateと言うサービスがAWS上で使用できるので今までChef
 レビューするのためのURLを指定できたりもする。
 
 # CodeCommit
+## DRについて
+地味にリージョン別のサービスなのでDR考える場合はコミット時にLambdaでコミットを別リージョンのCodeCommitにPushしないといけない
 ## 他のレポジトリサービスからの移行
 レポジトリをクローンし、CodeCommitにPushする
 

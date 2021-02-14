@@ -193,9 +193,15 @@ Dynamic Adaptive Streaming over HTTP (DASH) (MPEG-DASH とも呼ばれる) は�
 
 ## Kinesis Data Firehose
 ストリーミングデータをデータレイクやデータストア、分析ツールに確実にロードする
-ストリーミングデータ(IoT機器から等)をキャプチャして変換し、Amazon S3、Amazon Redshift、Amazon Elasticsearch Service、Splunk にロードする
+ストリーミングデータ(IoT機器のデータやCloudWatchLogsのログなど)をキャプチャして変換し、Amazon S3、Amazon Redshift、Amazon Elasticsearch Service、Splunk にロードする
 配信ストリームを作成してデータを配信
 Lambdaを利用したデータの変形が可能
+
+### Data FirehoseとData Streamsの違い
+Kinesis Streamsの最大の特徴はレイテンシの速さ、次々に上がってくるデータの内容をリアルタイムに加工、表示させたいと言うニーズに対応（Streamsは1秒以下で処理、Firehoseは60秒ほど）
+Kinesis Firehoseの特徴はゼロ管理でコードを書く必要がほぼない。分析目的でS3とかに貯める目的なのでそこまでリアルタイム性いらない
+
+[Data FirehoseとData Streamsの違い](https://dev.classmethod.jp/articles/difference-between-kinesis-streams-and-kinesis-firehose/)
 
 ## Amazon Kinesis S3コネクター
 Amazon Kinesis から Amazon S3 にデータをアーカイブすることができます。Amazon Kinesis コネクタライブラリを使用すると Amazon Kinesis を他の AWS サービスやサードパーティー製ツールと簡単に統合できるようになります。
