@@ -45,10 +45,14 @@ IAMロールを引き受けると信頼するプリンシパルを定義するJS
 IAMの一機能  
 一時的セキュリティ認証情報を持つ、信頼されたユーザーを作成および提供することができる。
 ユーザーにはロールが紐づいている
+
+[STSによる一時的な認証情報の付与について](https://dev.classmethod.jp/articles/cm-advent-calendar-2015-getting-started-again-aws-iam/#toc-16)
 ## ID フェデレーションでのSTSの使用
 ### ウェブIDフェデレーション
 基本的にはAWS Cognitoを使うことで実現できるが、直接AssumeRoleWithWebIdentity APIを呼び出しても実現できる（Cognitoを使う時もAssumeRoleWithWebIdentity APIを叩いている Cognito推奨）
 Google・Amazon・Facebook認証とかで使用する。
+
+アクセスキーID等が返される
 
 ### エンタープライズIDフェデレーション
 組織のネットワークのユーザーを認証し、ユーザーが AWS にアクセス可能にすることができる。
@@ -58,17 +62,30 @@ Microsoft Active Directory を活用できる。
 ※社内でSAML 2.0をサポートしていない社内のID認証システムを使う場合（LDAP（Lightweight Directory Access Protocol）による認証など）
 組織の認証システムを使用して AWS リソースへのアクセスを許可することができる。
 
-1.AssumeRole
+1. AssumeRole
 ユーザーを認証するためのカスタムIDブローカーを作成し。AssumeRoleを用いてAWSリソースへのアクセスに使用できる一時的なセキュリティ認証情報のセットを取得し、AWSリソースにアクセス。
 これらの一時的な資格情報は、アクセスキーID、シークレットアクセスキー、およびセキュリティトークンで構成される。
 通常、AssumeRoleはアカウント内またはクロスアカウントアクセスに使用します
 
 端的に言うと、AssumeRoleはRoleArnを入力するとCredentialsを返すAPI
 
-2.GetFederationToken
-GetFederationTokenではフェデレーションユーザーの一連の一時的なセキュリティ資格情報（アクセスキーID、シークレットアクセスキー、およびセキュリティトークンで構成される）を返します。IAMユーザーの長期的なセキュリティ認証情報を使用してGetFederationTokenオペレーションを呼び出す必要があります。 その結果、この呼び出しにより、サーバーベースのアプリケーションにおいて、これらの資格情報を安全に保存することができます
-AssumeRoleと違ってデフォルトの有効期限が大幅に長い（12時間）
+2. GetFederationToken
+GetFederationTokenではフェデレーションユーザーの一連の一時的なセキュリティ資格情報（アクセスキーID、シークレットアクセスキー、およびセキュリティトークンで構成される）を返す。
+Federatedユーザは、事前準備なし(`IAMロール作成不要`)で利用したい時にだけ一時的な権限を発行することができるため、アクセスキーがあればすぐに試すことができる
+AssumeRoleと違ってデフォルトの有効期限が大幅に長い（デフォルト12時間で90m~36hを指定可能）
+
+
 既存の IAM ユーザーに一時的セキュリティ認証情報のセットが返ります。この API は、MFA が IAM ユーザーに対して有効なときに AWS リクエストを作成するなど、セキュリティを強化するために役立つ
+
+##### 一時クレデンシャルを利用したAWS Management Consoleログイン用URL作成の流れ
+AssumeRoleもGetFederationTokenでもほぼ同じ
+1. アクセスキー、シークレットアクセスキー、トークンの3セットを入手 
+2. 取得した情報からセッション文字列を生成 
+3. セッション文字列をURLエンコード 
+4. AWSフェデレーションエンドポイントにリクエストを送信してサインイントークンを取得 
+5. ログイン用URLを作成
+
+[手順](https://dev.classmethod.jp/articles/aws-management-console-login-without-iam-password/)
 
 #### SAML2.0を用いたフェデレーション
 組織の認証システムとSAMLを使用して、AWSリソースへのアクセスを許可することができる。
