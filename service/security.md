@@ -41,6 +41,15 @@ Switch Roleを活用することにより各アカウントのIAMユーザーと
 ### 信頼ポリシー
 IAMロールを引き受けると信頼するプリンシパルを定義するJSONポリシードキュメント。ロール信頼ポリシーは、IAMのロールにアタッチされる必須のリソースベースのポリシーです。信頼ポリシーで指定できるプリンシパルには、ユーザー、ロール、アカウント、およびサービスが含まれます。 
 
+## IAM Permission Boundary
+誰でも柔軟に各アカウントで権限のポリシーの付け替えができるようにしたいが、必要以上に権限を付けられたくない場合に使う
+### ユースケース
+1. 組織管理者が絶対禁止したいものをSCPで定義
+1. 各アカウントのIAM管理者が Permission Boundary で利用者の権限範囲を定義
+1. 利用者は Permission Boundary で定義された範囲のポリシーのみ利用できる
+
+[IAM Permission Boundaryについて](https://qiita.com/14kw/items/46a0054d90a4f5d779c4#iam-permissions-boundary)
+
 # STS(Security Token Service)
 IAMの一機能  
 一時的セキュリティ認証情報を持つ、信頼されたユーザーを作成および提供することができる。
