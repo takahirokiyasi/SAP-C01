@@ -249,7 +249,10 @@ AD 対応アプリケーションと AWS アプリケーションにユーザー
 オンプレミス環境やAWS上にある既存のディレクトリサービスへの認証プロキシのような役割を果たす。
 ユーザー情報を保持するわけではない。
 AD Connectorを経由することで既存のディレクトリサービスを利用して認証処理を行うことが可能
-前提条件としてVPCがオンプレとVPNかDirectConnectで繋がっている必要がある。２つのサブネットが必要
+
+前提条件
+- VPCがオンプレとVPNかDirectConnectで繋がっている必要がある。
+- ２つのサブネットが必要
 https://dev.classmethod.jp/articles/try-active-directory-connector/
 
 # 認証・認可の基本知識

@@ -55,6 +55,7 @@ CloudFormation内でOpsWorksコンポーネント（スタック・レイヤー�
 Chef Automateと言うサービスがAWS上で使用できるので今までChef Automate使ってる場合は便利
 
 # CodePipeline
+※CodePipeline自体にはデプロイ機能はなくCodeDeployにある
 ## ユーザーによる承認アクションを入れる
 パイプラインのステージに承認アクションを追加した個所でパイプラインの実行を停止することで、必要な IAMアクセス許可を持つユーザーによるアクションを承認または拒否する設定が可能。
 `SNS`を使ってをメールであったりSQSに送信したり、Lambdaを実行できる
@@ -63,6 +64,17 @@ Chef Automateと言うサービスがAWS上で使用できるので今までChef
 # CodeCommit
 ## 他のレポジトリサービスからの移行
 レポジトリをクローンし、CodeCommitにPushする
+
+# CodeDeploy
+## デプロイ設定
+[CodeDeployのデプロイ設定](https://docs.aws.amazon.com/ja_jp/codedeploy/latest/userguide/deployment-configurations.html)
+### Lambdaに対してのデプロイ設定
+- Canary
+一回目と二回目でデプロイを分ける。一回目は10%で、二回目で残りの90%をデプロイするとかできる
+- 線形
+毎回同じ間隔で、等しい増分だけ移行される
+- All-at-once
+一度に一気に新しいのに移行
 
 # CodeStar
 開発環境のスキャホールドと言えます。リポジトリ（CodeCommit）からビルド（CodeBuild）、そしてデプロイ（CodeDeploy）がCodePipelineで自動で作成される。デプロイするEC2インスタンスやBeanstalk環境も選択すれば自動で作成してくれる。
