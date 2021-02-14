@@ -160,6 +160,7 @@ CloudWatch LogsイベントによってCloudTrail API呼び出しでトレース
 
 ## CloudTrail Insight
 ログの異常なアクティビティを検出する
+（SNSと連携して異常検知したらメールを送信とかは今のところできない）
 
 ## マルチアカウントでログの集約
 集約先のアカウントにS3のバケットを作成して、バケットポリシーで別アカウントのCloudTrailからのPutObjectを許可する。
