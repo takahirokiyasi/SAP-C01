@@ -379,11 +379,17 @@ FQDN(完全修飾ドメイン名)　www1.sub.example.com. 一意に識別可能
 ### プライベートホストゾーン
 プライベートホストゾーンはVPCに閉じたプライベートネットワーク内のドメインのレコードを管理するコンテナ
 
-DNS用のVPCを作成してVPCピアリングで他のVPCをつなげた上でプライベートホストゾーンで他のVPCにルーティングする要件などもある。
+`DNS用のVPC`を作成してVPCピアリングで他のVPCをつなげた上でプライベートホストゾーンで他のVPCにルーティングする要件などもある。
+別アカウントでも同一アカウントでもルーティング設定可能
 #### 設定方法
-プライベートホストゾーンを使用するには、次の Amazon VPC 設定を `true` に設定する必要があります。
+プライベートホストゾーンを使用するには、次の Amazon VPC 設定を `True` に設定する必要があります。
 enableDnsHostnames
 enableDnsSupport
+
+#### DNS用のVPCを作成して他のVPCにルーティング
+同一アカウントでやる場合はPrivate DNS Associateで関連づけ
+別アカウントでやる場合はプライベートホストゾーンを持っているアカウントからcreateVPCAssociateAuthorization API
+参照側のVPCでAssociateVPCWithHostedZone APIで関連づけを行う。
 
 ## Evaluate Target Health
 `Route53のALBに対しての`正常性のチェック

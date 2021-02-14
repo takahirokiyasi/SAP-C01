@@ -3,6 +3,19 @@ Amazon RDS は DB インスタンスへのシェルアクセスを提供して�
 また、高度な特権を必要とする特定のシステムプロシージャやテーブルへのアクセスを制限している。
 そのためシェルアクセスが必要な案件ではEC2にDataBaseを立てることが必要
 
+## インスタンスタイプ
+[RDSのインスタンスタイプについて](https://docs.aws.amazon.com/ja_jp/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html)
+インスタンスタイプをあげるとCPU使用率とメモリ使用率がましになる。
+
+## ストレージタイプ
+- 汎用ストレージ(gp2)
+EBSのやつと同じくバーストする
+- プロビジョンド IOPS SSD ストレージ(io1)
+- マグネティック（下位互換のためのやつで今非推奨）
+
+### ストレージサイズ
+ストレージサイズを大きくすると最大IPOSとスループットが改善される。
+
 ## Oracleの各種機能の対応について
 ### RAC(Oracle Real Application Cluster)は対応していないのでEC2のAMIを使用
 RACはAWSではサポートされておらず、RDSを利用してORACLEをデータベースエンジンとしてもRACを使用することはできないが、AWSマーケットプレイス上のAMIを使ってRACをAmazon EC2上にデプロイすることが可能になった。
