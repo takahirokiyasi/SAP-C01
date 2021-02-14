@@ -103,7 +103,7 @@ aws cliのコマンドでローカルからファイルをS3にアップロー�
 
 ## S3 Transfer Acceleration
 海外リージョン等の送信元から遠く離れたS3へのデータ転送を最適化する機能
-Transfer Acceleration では、Amazon CloudFrontのエッジロケーションを利用しており、エッジロケーションに到着したデータは、最適化されたネットワークパスでAmazon S3に転送される。
+CloudFrontのエッジロケーションを利用して最短距離でデータをS3に転送できる。
 
 ## Amazon S3 Batch Operations（バッチオペレーション）
 Amazon S3のバケットに保存されているオブジェクトに対して一括でAPIを実行できる機能
