@@ -226,7 +226,15 @@ IDプールで管理されるユーザー単位に、デバイス間でアプリ
 従業員に対してMicrosoft ADとか使ってシングルサインオンでAWSにアクセスできるサービス
 STSを使ってSSOを実現するのではなく、より簡単にSSOを実現する。導入に必要なタスクがより少なくなった
 
-AWS SSO内にADをデフォルトで作れる（外部のADにも接続できる）
+AWS SSO内にADをデフォルトで作れる（外部のADにも接続できる。オンプレのADだったり、AWS Managed Microsoft ADだったり）
+
+SAMLやOIDCを⽤いたIDフェデレーションをサポート
+外部のアイデンティティに、IAMロールのセッションを⽤いてAWSリソースへのアクセスを可能としている
+
+これ見ればOrganizationとの統合やSAML連携がよくわかる（複雑なので丸投げ）
+↓
+[AWSにおけるシングルサインオンの設計と仕組み](https://d1.awsstatic.com/webinars/jp/pdf/services/20200722_AWSBlackbelt_%E3%82%B7%E3%83%B3%E3%82%B0%E3%83%AB%E3%82%B5%E3%82%A4%E3%83%B3%E3%82%AA%E3%83%B3%E3%81%AE%E8%A8%AD%E8%A8%88%E3%81%A8%E9%81%8B%E7%94%A8.pdf)
+
 ## Organizationsとの統合
 - AWS Organizations マスターアカウントから、ユーザー毎のアクセス権限を⼀元管理
 既存の社内認証情報を使用できる
@@ -245,6 +253,8 @@ AD 対応アプリケーションと AWS アプリケーションにユーザー
 オンプレミスのADと信頼関係を構築できる。
 たとえば、ユーザーは既存の AD ユーザー名とパスワードを使用して、AWS マネジメントコンソールとAmazon WorkSpaces にサインインできます。また、SharePoint などの AD 対応アプリケーションに認証情報の再入力なしでアクセスできるようになる。
 
+[AWS Managed Microsoft AD　＋　SSO](https://dev.classmethod.jp/articles/enable-aws-single-sign-on-howto/)
+
 ## AD Connector
 オンプレミス環境やAWS上にある既存のディレクトリサービスへの認証プロキシのような役割を果たす。
 ユーザー情報を保持するわけではない。
@@ -254,6 +264,14 @@ AD Connectorを経由することで既存のディレクトリサービスを�
 - VPCがオンプレとVPNかDirectConnectで繋がっている必要がある。
 - ２つのサブネットが必要
 https://dev.classmethod.jp/articles/try-active-directory-connector/
+
+## オンプレミスのADにSSOを接続する
+AD ConnectorかAWS Managed Microsoft ADが使用可能
+### AWS Managed Microsoft ADの場合
+双方向の信頼関係を作成する
+AWS Managed Microsoft AD とオンプレミスの Active Directory との間で作成される`双方向`の信頼関係により、オンプレミスのユーザーは会社の認証情報を使用してさまざまな AWS サービスおよびビジネスアプリケーションにサインインできる。
+一方向の信頼では AWS SSO では機能しない
+https://docs.aws.amazon.com/ja_jp/singlesignon/latest/userguide/connectonpremad.html
 
 # SSO
 1度のログインにより複数のサービスにアクセスすることができる機能  
