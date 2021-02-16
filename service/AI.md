@@ -14,3 +14,23 @@ Amazon Rekognition Videoは、ストリーミングビデオの分析を開始�
 
 # Polly
 テキストの音声読み上げサービス
+
+# Transcribe
+音声からテキスト変換サービス
+
+# Lex
+チャットボットサービス
+
+# Forcast
+時系列予測サービス
+需要予測など
+
+# Personalize
+レコメンデーションサービス
+おすすめ商品とか
+
+# Comprehend
+テキストからそのテキストの人がどういう感情なのか判定する
+
+# Translate
+翻訳サービス
