@@ -42,17 +42,6 @@ Lambda Edgeを使用して、Lambda関数でCloudFrontが配信するコンテ�
 
 ※Route 53の位置情報ルーティングでは遅延は解消されない（コンテンツのローカライズに普通は使用）
 
-# ドメインが追加されるたびに証明書を発行＆プロビジョニングする必要がないようにALBを設定するにはSNI（Server Name Indication）を使用する
-ACMコンソールを使用してALBのドメインのすべてのSSL証明書を追加し、複数の証明書をロードバランサーの同じセキュアリスナーにバインドします。
-ALBは、Server Name Indication（SNI）を使用して、各クライアントに最適なTLS証明書を自動的に選択します。
-
-https://dev.classmethod.jp/articles/alb-support-sni/
-
-# cloudfrontでThe request could not be satisfied.Bad Request.のエラー
-- リクエストが HTTP を通じて開始されたが、CloudFront ディストリビューションは HTTPS のリクエストだけを許可するように設定されている。この場合は、ビューワーのプロトコルポリシーにおいて、[HTTP and HTTPS  または Redirect HTTP to HTTPSのいずれかを選択します。
-
-- リクエストされた代替ドメイン名 (CNAME) が CloudFront ディストリビューションと関連付けられていない。この場合はloudFront ディストリビューションと関連付ける CNAME を入力します。
-
 # Basion host
 Bastion ホストは`パブリックサブネット`に配置され、あなたとあなたのインスタンスの間のプロキシまたはゲートウェイとして機能します。
 - Bastion ホストは、インフラストラクチャに対する攻撃を軽減するのに役立つセキュリティ対策であり、単一レイヤの強化に集中する必要がある
